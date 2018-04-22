@@ -117,6 +117,10 @@ func massage(s string) string {
 	return s
 }
 
+func (w Content) FullPath() string {
+	return filepath.Join(w.DirName(), w.FileName())
+}
+
 func (w Content) DirName() string {
 	dir, _ := filepath.Split(w.Category.Path)
 	s := filepath.Join(dir, w.Category.Title)
@@ -131,8 +135,9 @@ func (w Content) FileName() string {
 func (w Content) Write(out io.Writer) {
 	fmt.Fprintln(out, "+++")
 	fmt.Fprintf(out, "title=%s\n", w.Title)
+	fmt.Fprintf(out, "date = %s\n", w.Created)
 	fmt.Fprintf(out, "lastmod = %s\n", w.Modified)
-	fmt.Fprintf(out, "path = %s\n", filepath.Join(w.DirName(), w.FileName()))
+	fmt.Fprintf(out, "path = %s\n", w.FullPath())
 	fmt.Fprintf(out, "joomlaid = %d\n", w.ID)
 	fmt.Fprintf(out, "category = %s\n", w.Category.Title)
 	fmt.Fprintln(out, "+++")
