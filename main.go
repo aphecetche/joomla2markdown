@@ -2,7 +2,8 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
+	"os"
+	"path/filepath"
 
 	"github.com/aphecetche/joomla2hugo/wsub"
 	_ "github.com/go-sql-driver/mysql"
@@ -13,10 +14,23 @@ func main() {
 	checkErr(err)
 	defer db.Close()
 
-	res, err := wsub.WsubContents(db, "catid=17")
+	cats, err := wsub.Categories(db)
+	checkErr(err)
+	var categories = make(map[int]wsub.Category)
+	for _, c := range cats {
+		categories[c.ID] = *c
+	}
+
+	//res, err := wsub.Contents(db, "(catid=17 or catid=16)", categories)
+	res, err := wsub.Contents(db, "true", categories)
 	checkErr(err)
 	for _, r := range res {
-		fmt.Println(r)
+		dir := filepath.Join("output", r.DirName())
+		os.MkdirAll(dir, os.ModePerm)
+		filename := filepath.Join(dir, r.FileName())
+		file, err := os.Create(filename)
+		checkErr(err)
+		r.Write(file)
 	}
 }
 
