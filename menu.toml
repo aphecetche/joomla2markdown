@@ -1,0 +1,159 @@
+ [[ menu.main ]]
+  identifier= "services-techniques"
+  name = "services-techniques"
+ [[ menu.main ]]
+  identifier= "services-techniques/informatique"
+  name = "informatique"
+  parent="services-techniques"
+ [[ menu.main ]]
+  identifier= "mesures/le-service-smart"
+  name = "le-service-smart"
+  parent="mesures"
+ [[ menu.main ]]
+  identifier= "services-techniques/electronique"
+  name = "electronique"
+  parent="services-techniques"
+ [[ menu.main ]]
+  identifier= "recherche/nucleaire-et-sante/radiochimie"
+  name = "radiochimie"
+  parent="recherche/nucleaire-et-sante"
+ [[ menu.main ]]
+  identifier= "mesures/nos-prestations"
+  name = "nos-prestations"
+  parent="mesures"
+ [[ menu.main ]]
+  identifier= "laboratoire/nos-activites"
+  name = "nos-activites"
+  parent="laboratoire"
+ [[ menu.main ]]
+  identifier= "recherche"
+  name = "recherche"
+ [[ menu.main ]]
+  identifier= "recherche/nucleaire-et-environnement/erdre"
+  name = "erdre"
+  parent="recherche/nucleaire-et-environnement"
+ [[ menu.main ]]
+  identifier= "laboratoire/administration"
+  name = "administration"
+  parent="laboratoire"
+ [[ menu.main ]]
+  identifier= "recherche/nucleaire-et-sante/xenon/recherche/fondamentales"
+  name = "fondamentales"
+  parent="recherche/nucleaire-et-sante/xenon/recherche"
+ [[ menu.main ]]
+  identifier= "recherche/univers-a-haute-energie/xenon/recherche/appliquees"
+  name = "appliquees"
+  parent="recherche/univers-a-haute-energie/xenon/recherche"
+ [[ menu.main ]]
+  identifier= "mesures"
+  name = "mesures"
+ [[ menu.main ]]
+  identifier= "laboratoire"
+  name = "laboratoire"
+ [[ menu.main ]]
+  identifier= "services-techniques/mecanique"
+  name = "mecanique"
+  parent="services-techniques"
+ [[ menu.main ]]
+  identifier= "recherche/nucleaire-et-sante/prisma"
+  name = "prisma"
+  parent="recherche/nucleaire-et-sante"
+ [[ menu.main ]]
+  identifier= "recherche/univers-a-haute-energie/erdre"
+  name = "erdre"
+  parent="recherche/univers-a-haute-energie"
+ [[ menu.main ]]
+  identifier= "recherche/univers-a-haute-energie/xenon"
+  name = "xenon"
+  parent="recherche/univers-a-haute-energie"
+ [[ menu.main ]]
+  identifier= "enseignement/options-emn"
+  name = "options-emn"
+  parent="enseignement"
+ [[ menu.main ]]
+  identifier= "recherche/univers-a-haute-energie/theorie/activites-de-recherche"
+  name = "activites-de-recherche"
+  parent="recherche/univers-a-haute-energie/theorie"
+ [[ menu.main ]]
+  identifier= "recherche/univers-a-haute-energie/neutrino"
+  name = "neutrino"
+  parent="recherche/univers-a-haute-energie"
+ [[ menu.main ]]
+  identifier= "laboratoire/venir-a-subatech"
+  name = "venir-a-subatech"
+  parent="laboratoire"
+ [[ menu.main ]]
+  identifier= "recherche/univers-a-haute-energie/plasma"
+  name = "plasma"
+  parent="recherche/univers-a-haute-energie"
+ [[ menu.main ]]
+  identifier= "recherche/nucleaire-et-sante/xenon"
+  name = "xenon"
+  parent="recherche/nucleaire-et-sante"
+ [[ menu.main ]]
+  identifier= "recherche/univers-a-haute-energie/theorie-haute-energie"
+  name = "theorie-haute-energie"
+  parent="recherche/univers-a-haute-energie"
+ [[ menu.main ]]
+  identifier= "recherche/univers-a-haute-energie/xenon/recherche"
+  name = "recherche"
+  parent="recherche/univers-a-haute-energie/xenon"
+ [[ menu.main ]]
+  identifier= "recherche/nucleaire-et-environnement/prisma"
+  name = "prisma"
+  parent="recherche/nucleaire-et-environnement"
+ [[ menu.main ]]
+  identifier= "recherche/nucleaire-et-sante"
+  name = "nucleaire-et-sante"
+  parent="recherche"
+ [[ menu.main ]]
+  identifier= "communication"
+  name = "communication"
+ [[ menu.main ]]
+  identifier= "recherche/univers-a-haute-energie/theorie-basse-energie"
+  name = "theorie-basse-energie"
+  parent="recherche/univers-a-haute-energie"
+ [[ menu.main ]]
+  identifier= "communication/bibliotheque"
+  name = "bibliotheque"
+  parent="communication"
+ [[ menu.main ]]
+  identifier= "enseignement/masters"
+  name = "masters"
+  parent="enseignement"
+ [[ menu.main ]]
+  identifier= "enseignement/masters/mars"
+  name = "mars"
+  parent="enseignement/masters"
+ [[ menu.main ]]
+  identifier= "recherche/nucleaire-et-environnement"
+  name = "nucleaire-et-environnement"
+  parent="recherche"
+ [[ menu.main ]]
+  identifier= "recherche/nucleaire-et-environnement/radiochimie"
+  name = "radiochimie"
+  parent="recherche/nucleaire-et-environnement"
+ [[ menu.main ]]
+  identifier= "recherche/univers-a-haute-energie"
+  name = "univers-a-haute-energie"
+  parent="recherche"
+ [[ menu.main ]]
+  identifier= "recherche/nucleaire-et-sante/xenon/recherche/appliquees"
+  name = "appliquees"
+  parent="recherche/nucleaire-et-sante/xenon/recherche"
+ [[ menu.main ]]
+  identifier= "recherche/univers-a-haute-energie/theorie"
+  name = "theorie"
+  parent="recherche/univers-a-haute-energie"
+ [[ menu.main ]]
+  identifier= "recherche/univers-a-haute-energie/astro"
+  name = "astro"
+  parent="recherche/univers-a-haute-energie"
+ [[ menu.main ]]
+  identifier= "recherche/nucleaire-et-sante/radiochimie/recherche"
+  name = "recherche"
+  parent="recherche/nucleaire-et-sante/radiochimie"
+ [[ menu.main ]]
+  identifier= "recherche/univers-a-haute-energie/xenon/recherche/fondamentales"
+  name = "fondamentales"
+  parent="recherche/univers-a-haute-energie/xenon/recherche"

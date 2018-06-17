@@ -47,11 +47,12 @@ type Content struct {
 	Xreference     string    `json:"xreference"`       // xreference
 
 	Category Category
+	MenuPath string
 }
 
 func (w Content) String() string {
-	return fmt.Sprintf("%3d:Title[%s]:Alias[%s]:Created[%v]:Modified[%v]:File[%v]", w.ID, w.Title,
-		w.Alias, w.Created.Format("2 janvier 2006"), w.Modified.Format("2 janvier 2006"), w.FileName())
+	return fmt.Sprintf("%3d:Title[%s]:Alias[%s]:Created[%v]:Modified[%v]:File[%v]:MenuPath:[%v]", w.ID, w.Title,
+		w.Alias, w.Created.Format("2 janvier 2006"), w.Modified.Format("2 janvier 2006"), w.FileName(), w.MenuPath)
 }
 
 func stringReplace(s, from, dest string) string {
@@ -134,12 +135,21 @@ func (w Content) FileName() string {
 
 func (w Content) Write(out io.Writer) {
 	fmt.Fprintln(out, "+++")
-	fmt.Fprintf(out, "title=%s\n", w.Title)
-	fmt.Fprintf(out, "date = %s\n", w.Created)
-	fmt.Fprintf(out, "lastmod = %s\n", w.Modified)
-	fmt.Fprintf(out, "path = %s\n", w.FullPath())
+	title := stringReplace(w.Title, `\`, `\\`) // for mathjax syntax
+	title = stringReplace(title, `"`, `\"`)
+	fmt.Fprintf(out, "title = \"%s\"\n", title)
+	fmt.Fprintf(out, "date = \"%s\"\n", w.Created)
+	fmt.Fprintf(out, "lastmod = \"%s\"\n", w.Modified)
+	fmt.Fprintf(out, "path = \"%s\"\n", w.FullPath())
 	fmt.Fprintf(out, "joomlaid = %d\n", w.ID)
-	fmt.Fprintf(out, "category = %s\n", w.Category.Title)
+	fmt.Fprintf(out, "category = \"%s\"\n", w.Category.Title)
+
+	writeMenu(out, w.MenuPath, "[menu.main]")
+
+	base, _ := filepath.Split(w.DirName())
+	if len(base) > 0 {
+		fmt.Fprintf(out, "layout=\"%s\"\n", filepath.Clean(base))
+	}
 	fmt.Fprintln(out, "+++")
 	fmt.Fprintf(out, massage(w.Introtext))
 }

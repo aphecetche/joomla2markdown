@@ -6,6 +6,11 @@ package wsub
 import (
 	"database/sql"
 	"fmt"
+	"io"
+	"log"
+	"net/url"
+	"path/filepath"
+	"strconv"
 	"time"
 )
 
@@ -78,4 +83,43 @@ func Menus(db *sql.DB, where string) ([]*Menu, error) {
 	}
 
 	return res, nil
+}
+
+func UpdateMenuField(c *Content, menus []*Menu) {
+	for _, m := range menus {
+		u, err := url.Parse(m.Link)
+		if err != nil {
+			log.Fatal(err)
+		}
+		q := u.Query()
+		i, _ := strconv.Atoi(q.Get("id"))
+		if q.Get("view") == "article" && i == int(c.ID) {
+			c.MenuPath = m.Path
+			return
+		}
+	}
+	c.MenuPath = "unknown"
+}
+
+func GenerateNonContentMenus(menuPaths []string, out io.Writer) {
+	for _, m := range menuPaths {
+		writeMenu(out, m, " [[ menu.main ]]")
+	}
+}
+
+func writeMenu(out io.Writer, menuPath string, menuName string) {
+	if len(menuPath) == 0 {
+		log.Fatal("got no menupath")
+	}
+	if menuPath == "unknown" {
+		return
+	}
+
+	fmt.Fprintf(out, "%s\n", menuName)
+	fmt.Fprintf(out, "  identifier= \"%s\"\n", menuPath)
+	fmt.Fprintf(out, "  name = \"%s\"\n", filepath.Base(menuPath))
+	dir := filepath.Dir(menuPath)
+	if dir != "." {
+		fmt.Fprintf(out, "  parent=\"%s\"\n", dir)
+	}
 }

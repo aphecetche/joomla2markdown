@@ -43,7 +43,7 @@ func mapLinks(links []string, articles map[int]Content) map[string]string {
 
 	olinks := map[string]string{}
 
-	var arlink = regexp.MustCompile(`^index.php`)
+	var arlink = regexp.MustCompile(`^(index.php|fr/)`)
 
 	for _, l := range links {
 		if arlink.MatchString(l) {
@@ -70,7 +70,7 @@ func mapLinks(links []string, articles map[int]Content) map[string]string {
 
 func menu2links(links []string, menus []*Menu) []string {
 	olinks := []string{}
-	var melink = regexp.MustCompile(`^fr/`)
+	var melink = regexp.MustCompile(`^fr\/`)
 	for _, l := range links {
 		if melink.MatchString(l) {
 			for _, m := range menus {
@@ -95,7 +95,7 @@ func ListLinks(articles map[int]Content, menus []*Menu) map[string]string {
 	return mapLinks(links, articles)
 }
 
-func UpdateLinks(c *Content, links map[string]string) {
+func UpdateLinkField(c *Content, links map[string]string) {
 	r := strings.NewReader(c.Introtext)
 	doc, err := html.Parse(r)
 	if err != nil {
