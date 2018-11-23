@@ -124,10 +124,7 @@ func main() {
 		dir := filepath.Join("content", r.DirName())
 		os.MkdirAll(dir, os.ModePerm)
 		filename := filepath.Join(dir, r.FileName())
-		file, err := os.Create(filename)
-		defer file.Close()
-		checkErr(err)
-		r.Write(file)
+		writeToFile(&r, filename)
 		usedmenus[r.MenuPath] = struct{}{}
 	}
 
@@ -135,6 +132,13 @@ func main() {
 	file, err := os.Create("menu.toml")
 	defer file.Close()
 	wsub.GenerateNonContentMenus(remaining(menus, usedmenus), file)
+}
+
+func writeToFile(c *wsub.Content, filename string) {
+	file, err := os.Create(filename)
+	defer file.Close()
+	checkErr(err)
+	c.Write(file)
 }
 
 func checkErr(err error) {
