@@ -27,21 +27,21 @@ func filter(c []*wsub.Content) []wsub.Content {
 	return keep
 }
 
-// remaining returns list of menu paths that were not already used
-func remaining(menus []*wsub.Menu, usedmenus map[string]struct{}) []string {
-	rem := make(map[string]struct{})
+// remaining returns list of menus that were not already used
+func remaining(menus []*wsub.Menu, usedmenus map[string]struct{}) []*wsub.Menu {
+	rem := make(map[string]*wsub.Menu)
 	for _, m := range menus {
 		sm := splitMenu(m.Path)
 		for _, mpath := range sm {
 			_, ok := usedmenus[mpath]
 			if !ok {
-				rem[mpath] = struct{}{}
+				rem[mpath] = m
 			}
 		}
 	}
-	rv := make([]string, len(rem))
+	rv := make([]*wsub.Menu, len(rem))
 	n := 0
-	for i := range rem {
+	for _, i := range rem {
 		rv[n] = i
 		n++
 	}
@@ -63,23 +63,6 @@ func splitMenu(mpath string) []string {
 		n++
 	}
 	return rv
-}
-
-func generateRightMenu(menus []*wsub.Menu, refpath string) string {
-	pathToConsider := []string{
-		"recherche/univers-a-haute-energie",
-	}
-	keep := false
-	for _, p := range pathToConsider {
-		if strings.Contains(refpath, p) {
-			keep = true
-		}
-	}
-	if !keep {
-		return ""
-	}
-	r := strings.Replace(refpath, "/univers-a-haute-energie", "", -1)
-	return r
 }
 
 func main() {
@@ -117,33 +100,47 @@ func main() {
 	// filter out some undesired content, if any
 	kept := filter(res)
 
+	usedmenus := make(map[int]struct{})
+
 	// update the MenuPath and link part of content
 	for i := range kept {
-		wsub.UpdateMenuField(&kept[i], menus)
+		im := wsub.UpdateMenuField(&kept[i], menus)
+		if im > 0 {
+			usedmenus[im] = struct{}{}
+		}
 		wsub.UpdateLinkField(&kept[i], links)
 	}
-
-	usedmenus := make(map[string]struct{})
 
 	// now finally generate all the content files
 	for _, r := range kept {
 		dir := filepath.Join("content", r.DirName())
 		os.MkdirAll(dir, os.ModePerm)
 		filename := filepath.Join(dir, r.FileName())
-
-		rightMenu := generateRightMenu(menus, r.MenuPath)
-		r.RightMenu = rightMenu
-
 		writeToFile(&r, filename)
-
-		usedmenus[r.MenuPath] = struct{}{}
-
 	}
 
-	// finish by creating a menu configuration file for the remaining plumbing
+	nused := 0
+	var notused []*wsub.Menu
+
+	for _, m := range menus {
+		_, ok := usedmenus[m.ID]
+		if ok {
+			nused++
+			// fmt.Printf("   USED %s : %s ACCESS: %d\n", m.Path, m.Title, m.Access)
+		} else {
+			// fmt.Printf("NOTUSED %s : %s ACCESS: %d\n", m.Path, m.Title, m.Access)
+			if m.Access == 1 {
+				notused = append(notused, m)
+			}
+		}
+	}
+
+	// fmt.Printf("nused %d total %d\n", nused, len(menus))
+
+	//finish by creating a menu configuration file for the remaining plumbing
 	file, err := os.Create("menu.toml")
 	defer file.Close()
-	wsub.GenerateNonContentMenus(remaining(menus, usedmenus), file)
+	wsub.GenerateNonContentMenus(notused, file)
 }
 
 func writeToFile(c *wsub.Content, filename string) {

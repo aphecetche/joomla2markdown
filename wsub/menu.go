@@ -5,12 +5,14 @@ package wsub
 
 import (
 	"database/sql"
+	"encoding/json"
 	"fmt"
 	"io"
 	"log"
 	"net/url"
 	"path/filepath"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -48,6 +50,31 @@ func (m Menu) String() string {
 		m.ID, m.Menutype, m.Title, m.Path, m.Link, m.Type, m.Published)
 }
 
+func findMenu(menus []*Menu, id int) *Menu {
+	for _, m := range menus {
+		if m.ID == id {
+			return m
+		}
+	}
+	return nil
+}
+
+func decodeAliases(menus []*Menu) []*Menu {
+	var rv []*Menu
+	for _, m := range menus {
+		if m.Type == "alias" {
+			var v interface{}
+			json.Unmarshal([]byte(m.Params), &v)
+			jm := v.(map[string]interface{})
+			id, _ := strconv.Atoi(jm["aliasoptions"].(string))
+			d := findMenu(menus, id)
+			m.Params = d.Path
+		}
+		rv = append(rv, m)
+	}
+	return rv
+}
+
 // WsubMenusByAlias retrieves a row from 'jlabo.wsub_menu' as a WsubMenu.
 //
 // Generated from index 'idx_alias'.
@@ -56,7 +83,7 @@ func Menus(db *sql.DB, where string) ([]*Menu, error) {
 
 	// sql query
 	const sqlstr = `SELECT ` +
-		`id, menutype, title, alias, path, link, type, published ` +
+		`id, menutype, title, alias, path, link, type, published, access, level, params ` +
 		`FROM jlabo.wsub_menu `
 
 	qs := sqlstr + " WHERE " + where
@@ -74,7 +101,7 @@ func Menus(db *sql.DB, where string) ([]*Menu, error) {
 
 		// scan
 		err = q.Scan(&wm.ID, &wm.Menutype, &wm.Title, &wm.Alias, &wm.Path, &wm.Link,
-			&wm.Type, &wm.Published)
+			&wm.Type, &wm.Published, &wm.Access, &wm.Level, &wm.Params)
 		if err != nil {
 			return nil, err
 		}
@@ -82,10 +109,17 @@ func Menus(db *sql.DB, where string) ([]*Menu, error) {
 		res = append(res, &wm)
 	}
 
-	return res, nil
+	return decodeAliases(res), nil
 }
 
-func UpdateMenuField(c *Content, menus []*Menu) {
+func hasRightMenu(m *Menu) bool {
+	if strings.Contains(m.Path, "/recherche/univers-a-haute-energie") {
+		return true
+	}
+	return false
+}
+
+func UpdateMenuField(c *Content, menus []*Menu) int {
 	for _, m := range menus {
 		u, err := url.Parse(m.Link)
 		if err != nil {
@@ -94,31 +128,39 @@ func UpdateMenuField(c *Content, menus []*Menu) {
 		q := u.Query()
 		i, _ := strconv.Atoi(q.Get("id"))
 		if q.Get("view") == "article" && i == int(c.ID) {
-			c.MenuPath = m.Path
-			return
+			c.Menu = m
+			if hasRightMenu(m) {
+				c.RightMenu = m
+			}
+			return m.ID
 		}
 	}
-	c.MenuPath = "unknown"
+	c.Menu = nil
+	return 0
 }
 
-func GenerateNonContentMenus(menuPaths []string, out io.Writer) {
-	for _, m := range menuPaths {
-		writeMenu(out, m, " [[ menu.main ]]")
+func GenerateNonContentMenus(menus []*Menu, out io.Writer) {
+	for _, m := range menus {
+		writeMenu(out, *m, " [[ menu.main ]]")
 	}
 }
 
-func writeMenu(out io.Writer, menuPath string, menuName string) {
-	if len(menuPath) == 0 {
-		log.Fatal("got no menupath")
+func writeMenu(out io.Writer, menu Menu, menuName string) {
+	if len(menu.Path) == 0 {
+		// fmt.Printf("got no menupath")
+		return
 	}
-	if menuPath == "unknown" {
+	if menu.Path == "unknown" {
 		return
 	}
 
 	fmt.Fprintf(out, "%s\n", menuName)
-	fmt.Fprintf(out, "  identifier= \"%s\"\n", menuPath)
-	fmt.Fprintf(out, "  name = \"%s\"\n", filepath.Base(menuPath))
-	dir := filepath.Dir(menuPath)
+	fmt.Fprintf(out, "  identifier= \"%s\"\n", menu.Path)
+	fmt.Fprintf(out, "  name = \"%s\"\n", menu.Title)
+	if menu.Type == "alias" {
+		fmt.Fprintf(out, "  url = \"%s\"\n", menu.Params)
+	}
+	dir := filepath.Dir(menu.Path)
 	if dir != "." {
 		fmt.Fprintf(out, "  parent=\"%s\"\n", dir)
 	}

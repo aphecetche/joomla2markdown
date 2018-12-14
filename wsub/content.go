@@ -47,13 +47,13 @@ type Content struct {
 	Xreference     string    `json:"xreference"`       // xreference
 
 	Category  Category
-	MenuPath  string
-	RightMenu string
+	Menu      *Menu
+	RightMenu *Menu
 }
 
 func (w Content) String() string {
 	return fmt.Sprintf("%3d:Title[%s]:Alias[%s]:Created[%v]:Modified[%v]:File[%v]:MenuPath:[%v]", w.ID, w.Title,
-		w.Alias, w.Created.Format("2 janvier 2006"), w.Modified.Format("2 janvier 2006"), w.FileName(), w.MenuPath)
+		w.Alias, w.Created.Format("2 janvier 2006"), w.Modified.Format("2 janvier 2006"), w.FileName(), w.Menu.Path)
 }
 
 func stringReplace(s, from, dest string) string {
@@ -151,10 +151,11 @@ func (w Content) Write(out io.Writer) {
 	}
 
 	// menu entry must be last
-	writeMenu(out, w.MenuPath, "[menu.main]")
-
-	if len(w.RightMenu) > 0 {
-		writeMenu(out, w.RightMenu, "[menu.side]")
+	if w.Menu != nil {
+		writeMenu(out, *w.Menu, "[menu.main]")
+	}
+	if w.RightMenu != nil {
+		writeMenu(out, *w.RightMenu, "[menu.side]")
 	}
 	fmt.Fprintln(out, "+++")
 
