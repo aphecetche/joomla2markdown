@@ -13,3 +13,7 @@
 
 # executable
 joomla2hugo
+
+# generated files
+content
+menu.toml
