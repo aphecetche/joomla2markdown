@@ -1,0 +1,1 @@
+- generate right menu for more pages (now only univers-a-haute-energie)

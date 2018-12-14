@@ -46,8 +46,9 @@ type Content struct {
 	Language       string    `json:"language"`         // language
 	Xreference     string    `json:"xreference"`       // xreference
 
-	Category Category
-	MenuPath string
+	Category  Category
+	MenuPath  string
+	RightMenu string
 }
 
 func (w Content) String() string {
@@ -144,13 +145,19 @@ func (w Content) Write(out io.Writer) {
 	fmt.Fprintf(out, "joomlaid = %d\n", w.ID)
 	fmt.Fprintf(out, "category = \"%s\"\n", w.Category.Title)
 
-	writeMenu(out, w.MenuPath, "[menu.main]")
-
 	base, _ := filepath.Split(w.DirName())
 	if len(base) > 0 {
 		fmt.Fprintf(out, "layout=\"%s\"\n", filepath.Clean(base))
 	}
+
+	// menu entry must be last
+	writeMenu(out, w.MenuPath, "[menu.main]")
+
+	if len(w.RightMenu) > 0 {
+		writeMenu(out, w.RightMenu, "[menu.side]")
+	}
 	fmt.Fprintln(out, "+++")
+
 	fmt.Fprintf(out, massage(w.Introtext))
 }
 

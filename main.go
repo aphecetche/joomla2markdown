@@ -2,7 +2,6 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -32,18 +31,8 @@ func filter(c []*wsub.Content) []wsub.Content {
 func remaining(menus []*wsub.Menu, usedmenus map[string]struct{}) []string {
 	rem := make(map[string]struct{})
 	for _, m := range menus {
-		print := false
-		if strings.Contains(m.Path, "astro") {
-			print = true
-		}
-		if print {
-			fmt.Println("path=", m.Path)
-		}
 		sm := splitMenu(m.Path)
-		for i, mpath := range sm {
-			if print {
-				fmt.Println("---", i, mpath)
-			}
+		for _, mpath := range sm {
 			_, ok := usedmenus[mpath]
 			if !ok {
 				rem[mpath] = struct{}{}
@@ -74,6 +63,23 @@ func splitMenu(mpath string) []string {
 		n++
 	}
 	return rv
+}
+
+func generateRightMenu(menus []*wsub.Menu, refpath string) string {
+	pathToConsider := []string{
+		"recherche/univers-a-haute-energie",
+	}
+	keep := false
+	for _, p := range pathToConsider {
+		if strings.Contains(refpath, p) {
+			keep = true
+		}
+	}
+	if !keep {
+		return ""
+	}
+	r := strings.Replace(refpath, "/univers-a-haute-energie", "", -1)
+	return r
 }
 
 func main() {
@@ -124,8 +130,14 @@ func main() {
 		dir := filepath.Join("content", r.DirName())
 		os.MkdirAll(dir, os.ModePerm)
 		filename := filepath.Join(dir, r.FileName())
+
+		rightMenu := generateRightMenu(menus, r.MenuPath)
+		r.RightMenu = rightMenu
+
 		writeToFile(&r, filename)
+
 		usedmenus[r.MenuPath] = struct{}{}
+
 	}
 
 	// finish by creating a menu configuration file for the remaining plumbing
