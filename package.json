@@ -1,0 +1,22 @@
+{
+  "name": "joomla2hugo",
+  "version": "1.0.0",
+  "description": "Custom tool to convert a Joomla site to a Hugo one.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aphecetche/joomla2hugo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aphecetche/joomla2hugo/issues"
+  },
+  "homepage": "https://github.com/aphecetche/joomla2hugo#readme",
+  "devDependencies": {
+    "to-markdown-cli": "^0.4.1"
+  }
+}
