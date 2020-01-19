@@ -6,6 +6,10 @@ import (
 	"database/sql"
 	"fmt"
 	"io"
+	"io/ioutil"
+	"log"
+	"os"
+	"os/exec"
 	"path/filepath"
 	"strings"
 	"time"
@@ -116,7 +120,21 @@ func massage(s string) string {
 	s = removeStyle(s)
 	s = stringReplace(s, "<br/>", "")
 	s = changeAccents(s)
-	return s
+
+	file, err := ioutil.TempFile("", "prefix")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer os.Remove(file.Name())
+	cmd := exec.Command("npx", "html2md")
+	cmd.Stdin = strings.NewReader(s)
+	var out bytes.Buffer
+	cmd.Stdout = &out
+	err = cmd.Run()
+	if err != nil {
+		log.Fatal(err)
+	}
+	return out.String()
 }
 
 func (w Content) FullPath() string {
