@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/aphecetche/joomla2hugo/wsub"
+	"github.com/aphecetche/joomla2markdown/wsub"
 	_ "github.com/go-sql-driver/mysql"
 )
 
