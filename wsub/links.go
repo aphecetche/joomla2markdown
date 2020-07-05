@@ -62,7 +62,10 @@ func mapLinks(links []string, articles map[int]Content) map[string]string {
 			if err != nil {
 				panic(err)
 			}
-			olinks[l] = articles[aid].FullPath()
+			newLink := articles[aid].FullPath()
+			newLink = "/" + strings.ReplaceAll(newLink, ".md", "")
+			fmt.Println("l=", l, "aid=", aid, "newLink=", newLink)
+			olinks[l] = newLink
 		}
 	}
 	return olinks
