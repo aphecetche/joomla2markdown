@@ -154,14 +154,14 @@ func writeMenu(out io.Writer, menu Menu, menuName string) {
 		return
 	}
 
-	fmt.Fprintf(out, "%s\n", menuName)
-	fmt.Fprintf(out, "  identifier= \"%s\"\n", menu.Path)
-	fmt.Fprintf(out, "  name = \"%s\"\n", menu.Title)
+	fmt.Fprintf(out, "  %s:\n", menuName)
+	fmt.Fprintf(out, "    identifier: \"%s\"\n", menu.Path)
+	fmt.Fprintf(out, "    name: \"%s\"\n", menu.Title)
 	if menu.Type == "alias" {
-		fmt.Fprintf(out, "  url = \"%s\"\n", menu.Params)
+		fmt.Fprintf(out, "    url: \"%s\"\n", menu.Params)
 	}
 	dir := filepath.Dir(menu.Path)
 	if dir != "." {
-		fmt.Fprintf(out, "  parent=\"%s\"\n", dir)
+		fmt.Fprintf(out, "    parent: \"%s\"\n", dir)
 	}
 }

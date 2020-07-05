@@ -156,25 +156,25 @@ func (w Content) Write(out io.Writer) {
 	fmt.Fprintln(out, "---")
 	title := stringReplace(w.Title, `\`, `\\`) // for mathjax syntax
 	title = stringReplace(title, `"`, `\"`)
-	fmt.Fprintf(out, "title : \"%s\"\n", title)
-	fmt.Fprintf(out, "date : \"%s\"\n", w.Created)
-	fmt.Fprintf(out, "lastmod : \"%s\"\n", w.Modified)
-	fmt.Fprintf(out, "path : \"%s\"\n", w.FullPath())
-	fmt.Fprintf(out, "joomlaid : %d\n", w.ID)
-	fmt.Fprintf(out, "category : \"%s\"\n", w.Category.Title)
+	fmt.Fprintf(out, "title: \"%s\"\n", title)
+	fmt.Fprintf(out, "date: \"%s\"\n", w.Created)
+	fmt.Fprintf(out, "lastmod: \"%s\"\n", w.Modified)
+	fmt.Fprintf(out, "path: \"%s\"\n", w.FullPath())
+	fmt.Fprintf(out, "joomlaid: %d\n", w.ID)
+	fmt.Fprintf(out, "category: \"%s\"\n", w.Category.Title)
 
 	base, _ := filepath.Split(w.DirName())
 	if len(base) > 0 {
-		fmt.Fprintf(out, "layout:\"%s\"\n", filepath.Clean(base))
+		fmt.Fprintf(out, "layout: \"%s\"\n", filepath.Clean(base))
 	}
 
 	// menu entry must be last
 	if w.Menu != nil {
-		writeMenu(out, *w.Menu, "menus:")
-		writeMenu(out, *w.Menu, "  main:")
+		fmt.Fprintf(out, "menus:\n")
+		writeMenu(out, *w.Menu, "main")
 	}
 	if w.RightMenu != nil {
-		writeMenu(out, *w.RightMenu, "  side:")
+		writeMenu(out, *w.RightMenu, "side")
 	}
 	fmt.Fprintln(out, "---")
 
