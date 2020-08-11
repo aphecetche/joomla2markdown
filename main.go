@@ -3,7 +3,6 @@ package main
 import (
 	"database/sql"
 	"flag"
-	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -71,7 +70,10 @@ var seminars = flag.Bool("seminars", false, "convert seminars")
 var content = flag.Bool("content", false, "convert main content (articles)")
 
 func convertSeminars(db *sql.DB) {
-	fmt.Println("would convert seminars here")
+	// Get seminars from DB
+	_, err := wsub.Seminars(db, "true")
+	checkErr(err)
+
 }
 
 func convertContent(db *sql.DB) {
