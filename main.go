@@ -2,6 +2,8 @@ package main
 
 import (
 	"database/sql"
+	"flag"
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -65,11 +67,14 @@ func splitMenu(mpath string) []string {
 	return rv
 }
 
-func main() {
-	db, err := sql.Open("mysql", "root:juges3:sud@tcp(localhost:3306)/jlabo?charset=utf8&parseTime=true")
-	checkErr(err)
-	defer db.Close()
+var seminars = flag.Bool("seminars", false, "convert seminars")
+var content = flag.Bool("content", false, "convert main content (articles)")
 
+func convertSeminars(db *sql.DB) {
+	fmt.Println("would convert seminars here")
+}
+
+func convertContent(db *sql.DB) {
 	// Get categories from DB
 	cats, err := wsub.Categories(db)
 	checkErr(err)
@@ -141,6 +146,21 @@ func main() {
 	file, err := os.Create("menu.toml")
 	defer file.Close()
 	wsub.GenerateNonContentMenus(notused, file)
+}
+
+func main() {
+	flag.Parse()
+
+	db, err := sql.Open("mysql", "root:juges3:sud@tcp(localhost:3306)/jlabo?charset=utf8&parseTime=true")
+	checkErr(err)
+	defer db.Close()
+
+	if *content {
+		convertContent(db)
+	}
+	if *seminars {
+		convertSeminars(db)
+	}
 }
 
 func writeToFile(c *wsub.Content, filename string) {
