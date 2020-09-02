@@ -8,9 +8,12 @@ import (
 	"io"
 	"io/ioutil"
 	"log"
+	"net/url"
 	"os"
 	"os/exec"
 	"path/filepath"
+	"regexp"
+	"strconv"
 	"strings"
 	"time"
 
@@ -50,14 +53,13 @@ type Content struct {
 	Language       string    `json:"language"`         // language
 	Xreference     string    `json:"xreference"`       // xreference
 
-	Category  Category
-	Menu      *Menu
-	RightMenu *Menu
+	Category Category
 }
 
 func (w Content) String() string {
-	return fmt.Sprintf("%3d:Title[%s]:Alias[%s]:Created[%v]:Modified[%v]:File[%v]:MenuPath:[%v]", w.ID, w.Title,
-		w.Alias, w.Created.Format("2 janvier 2006"), w.Modified.Format("2 janvier 2006"), w.FileName(), w.Menu.Path)
+	return fmt.Sprintf("%3d:Title[%s]:Alias[%s]:Created[%v]:Modified[%v]:File[%v]", w.ID, w.Title,
+		w.Alias, w.Created.Format("2 janvier 2006"), w.Modified.Format("2 janvier 2006"), w.FileName(),
+	)
 }
 
 func stringReplace(s, from, dest string) string {
@@ -112,14 +114,85 @@ func removeStyle(s string) string {
 	return render(doc)
 }
 
+func changeImageRefs(s string, cat string) string {
+	s = stringReplace(s, "images/Recherche/"+cat, "images")
+	s = stringReplace(s, "images/Recherche/"+strings.Title(cat), "images")
+	return s
+}
+
+func href(t html.Token) string {
+	for _, a := range t.Attr {
+		if a.Key == "href" {
+			return a.Val
+		}
+	}
+	return ""
+}
+
+func articleId(href string) int {
+	u, err := url.Parse(href)
+	if err != nil {
+		panic(err)
+	}
+	q := u.Query()
+	i := q["id"]
+	if len(i) == 0 {
+		fmt.Println("ERROR - could not decode link", href)
+		return -1
+	}
+	said := strings.Split(i[0], ":")
+	aid, err := strconv.Atoi(said[0])
+	if err != nil {
+		panic(err)
+	}
+	return aid
+}
+
+func massageLinks(s string, articles map[int]Content) string {
+	r := strings.NewReader(s)
+	z := html.NewTokenizer(r)
+
+	var joomlaLink = regexp.MustCompile(`^index.php`)
+
+	rep := make(map[string]string)
+
+out:
+	for {
+		tt := z.Next()
+		switch {
+		case tt == html.ErrorToken:
+			// end of document
+			break out
+		case tt == html.StartTagToken:
+			t := z.Token()
+			if t.Data == "a" {
+				h := href(t)
+				if joomlaLink.MatchString(h) {
+					aid := articleId(h)
+					newpath := articles[aid].FullPath()
+					rep[h] = "/" + newpath
+				}
+			}
+		}
+	}
+	s = html.UnescapeString(s)
+	for key, element := range rep {
+		s = strings.ReplaceAll(s, key, element)
+	}
+	return s
+}
+
 // massage cleans up a bit the html string to
 // remove inline style, empty paragraph, usage
 // of <br/> etc...
-func massage(s string) string {
+func massage(s string, cat string, articles map[int]Content) string {
 	s = stringReplace(s, "<p>&nbsp;</p>", "")
 	s = removeStyle(s)
 	s = stringReplace(s, "<br/>", "")
 	s = changeAccents(s)
+	s = changeImageRefs(s, cat)
+
+	s = massageLinks(s, articles)
 
 	file, err := ioutil.TempFile("", "prefix")
 	if err != nil {
@@ -152,7 +225,8 @@ func (w Content) FileName() string {
 	return fmt.Sprintf("%s.md", w.Alias)
 }
 
-func (w Content) Write(out io.Writer) {
+func (w Content) Write(out io.Writer, articles map[int]Content) {
+	fmt.Println("-----", w.FullPath())
 	fmt.Fprintln(out, "---")
 	title := stringReplace(w.Title, `\`, `\\`) // for mathjax syntax
 	title = stringReplace(title, `"`, `\"`)
@@ -162,23 +236,20 @@ func (w Content) Write(out io.Writer) {
 	fmt.Fprintf(out, "path: \"%s\"\n", w.FullPath())
 	fmt.Fprintf(out, "joomlaid: %d\n", w.ID)
 	fmt.Fprintf(out, "category: \"%s\"\n", w.Category.Title)
+	fmt.Fprintf(out, "asides: [\"%s.+menu+\"]\n", w.Category.Title)
 
 	base, _ := filepath.Split(w.DirName())
 	if len(base) > 0 {
 		fmt.Fprintf(out, "layout: \"%s\"\n", filepath.Clean(base))
 	}
 
-	// menu entry must be last
-	if w.Menu != nil {
-		fmt.Fprintf(out, "menus:\n")
-		writeMenu(out, *w.Menu, "main")
-	}
-	if w.RightMenu != nil {
-		writeMenu(out, *w.RightMenu, "side")
-	}
 	fmt.Fprintln(out, "---")
 
-	fmt.Fprintf(out, massage(w.Introtext))
+	fmt.Fprintf(out, massage(w.Introtext, w.Category.Title, articles))
+
+	// if w.FullPath() == "recherche/astro/astro-presentation.md" {
+	// 	panic("this is the end")
+	// }
 }
 
 func Contents(db *sql.DB, where string,
