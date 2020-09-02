@@ -8,8 +8,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"log"
-	"net/url"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -117,26 +115,6 @@ func hasRightMenu(m *Menu) bool {
 		return true
 	}
 	return false
-}
-
-func UpdateMenuField(c *Content, menus []*Menu) int {
-	for _, m := range menus {
-		u, err := url.Parse(m.Link)
-		if err != nil {
-			log.Fatal(err)
-		}
-		q := u.Query()
-		i, _ := strconv.Atoi(q.Get("id"))
-		if q.Get("view") == "article" && i == int(c.ID) {
-			c.Menu = m
-			if hasRightMenu(m) {
-				c.RightMenu = m
-			}
-			return m.ID
-		}
-	}
-	c.Menu = nil
-	return 0
 }
 
 func GenerateNonContentMenus(menus []*Menu, out io.Writer) {
