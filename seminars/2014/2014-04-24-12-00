@@ -1,0 +1,78 @@
+---
+title: "Modélisation des effets sur la structure locale du désordre de composition dans les matériaux cristallins ou non-cristallins ordonnés à l’échelle moléculaire "
+date: "2014-04-24 10:00:00 +0000 UTC"
+author: "Sylvian Cadars"
+location: "Amphi G. Besse"
+type: "spécialisé"
+---
+Résumé:Le désordre structural joue des rôles fondamentaux dans les propriétés de nombreux matériaux.[
+1
+](#_ENREF_1) Dans les solides ordonnés à l’échelle moléculaire comme les semi-conducteurs,[
+2
+](#_ENREF_2) les zéolites,[
+3
+](#_ENREF_3) les argiles[
+4-6
+](#_ENREF_4) ou les céramiques,[
+7
+](#_ENREF_7) les substitutions atomiques au sein de sites par ailleurs cristallographiquement ordonnés revêtent une importance toute particulière. Si ces substitutions ont nécessairement des répercussions sur la structure locale du fait des différences de propriétés atomiques (comme leur taille), celles-ci sont toutefois extrêmement difficiles à caractériser. Les techniques de diffractions basées sur la périodicité du système ne permet d’obtenir qu’une vision moyennée à longue distance, et donc incomplète à l’échelle locale. Dans ce contexte, la combinaison de spectroscopies locales et de la modélisation peut être déterminante.Deux scenarii distincts seront passés en revue. Dans le premier, une faible proportion des sites cristallographiques Si
+4+
+ au sein de feuillets de silicates auto-assemblés en présence de surfactants est substituée par des hétéroatomes de B
+3+
+ ou d’Al
+3+
+ de sorte que ces « défauts » peuvent être considérés comme isolés. En dépit de l’absence d’ordre cristallin à 3 dimensions, la résonance magnétique nucléaire (RMN) fournit des informations cruciales pour construire des modèles susceptibles de décrire les différents scénarii envisageables du fait de l’incorporation de Bore dans les différents sites tétraédriques du réseau silicaté. Ces modèles sont ensuite évalués sur la base de comparaisons entre données de RMN expérimentales et calculées par DFT sur base d’ondes planes, qui révèlent, suivant le type d’hétéroatome ou la structure de départ, une incorporation sélective au sein de sites bien ordonnés ou des réorganisations profondes de la structure locale.Dans un second type de scénario, une fraction importante des atomes du réseau sont substitutes, donnant lieu à un grand nombre de configurations possibles de répartitions des défauts, qui ne peuvent plus être considérés comme isolés. C’est par exemple le cas de la zéolite gallosilicate PST-1, caractérisée par un rapport Si/Ga de 1.3 et des canaux occupés par des cations Rb+, qui compensent le déficit de charges associé aux substitutions Ga
+3+
+/Si
+4+
+.[
+8
+](#_ENREF_8)Une modélisation avancée de tels systèmes peut être réalisée au moyen du programme Supercell récemment développé au laboratoire, et qui permet de sonder, par une approche statistique basée sur des critères énergétiques et de connectivité, cette complexité à l’échelle locale. Cette approche est utilisée ici pour examiner, à partir de données RMN de 
+17
+O, la possibilité de former des liaisons Ga-O-Ga au sein de la zéolite PST-1.
+
+Références
+1
+D. Massiot, et al., Acc. Chem. Res. 46, 1975 (2013).
+2
+ Y. I. Kim, et al., Phys. Rev. B 78, 195205 (2008).
+3
+ J. A. van Bokhoven, et al. Nat Mater 7, 551 (2008).
+4
+ P. J. Sideris, et al., Science 321, 113 (2008).
+5
+ S. Cadars, et al., Chem. Mater. 23, 2821 (2011).
+6
+ S. Cadars, et al., Chem. Mater. 24, 4376 (2012).
+7
+ M. Allix, et al., Adv. Mater. 24, 5570 (2012).
+8
+ J. Shin, et al., Dalton Transactions 39, 2246 (2010).
+
+_
+Abstract
+_**_
+:
+_****
+ 
+**
+
+
+Structural disorder play key roles in the properties of many advanced materials.1 In molecularly-ordered solids such as semi-conductors,[2] zeolite catalysts,[3] clays,[4-6] or transparent ceramics,[7] the atomic substitutions that occur at otherwise long-range-ordered crystallographic sites are of critical significance. These substitutions may have profound repercussions on the local framework structure due to differences in atomic radius and/or other atomic properties. When the substitutions lack periodicity, their local structural effects are incompletely described in the crystal structure as determined by diffraction techniques, which provide a long-range average vision of the system, and are consequently particularly challenging to characterize. Shedding light onto the compositional disorder in molecularly-ordered solids therefore requires a combination of molecular modelling and local experimental spectroscopies.Two distinct scenarios will be discussed. In the first, relatively small numbers of substitutions of framework Si
+4+
+ atoms by acidic Al
+3+
+ or B
+3+
+ atoms in the frameworks of surfactant-directed layered silicates occur at positions that may consequently be considered isolated from each other. Despite the lack of long-range 3D crystallinity due stacking disorder between consecutive silicate sheets, experimental nuclear magnetic resonance (NMR) provides critical constraints to build candidate models that potentially describe the different scenarios resulting from the presence of an isolated heteroatom into their layered frameworks. These models are then evaluated using comparisons between experimental and DFT-calculated NMR data, which reveal, depending on the framework structure or heteroatom type, either a profound reorganisation of the framework or a site-specific incorporation.In a second scenario, an important fraction of crystallographic sites are subjected to atomic substitutions, such that the local structure of the material involves a vast number of combinations of the relative positions of the different atoms. This is for example the case of most zeolite catalysts, including Rb-PST-1, a gallosilicate zeolite with a Si/Ga ratio of 1.3 and channels occupied by Rb
++
+ cations compensating the negative charge due to the substitutions of framework Si
+4+
+ atoms by catalytically-active Ga
+3+
+ atoms.[8] The modelling of this material was conducted with the help of the newly-developed Supercell program, which allows a complete treatment of the possible repartitions of Ga atoms by generating vast number of supercells that can be examined separately. This approach is used in combination with experimental 17O nuclear NMR experiments to evaluate the possibility to form Ga-O-Ga bonds in the PST-1 framework.
+
+  **References:** 
+
+1)D. Massiot, et al., Acc. Chem. Res. 46, 1975 (2013). 2) Y. I. Kim, S. Cadars, R. Shayib, T. Proffen, C. S. Feigerle, B. F. Chmelka, and R. Seshadri, Phys. Rev. B 78, 195205 (2008). 3) J. A. van Bokhoven, T.-L. Lee, M. Drakopoulos, C. Lamberti, S. Thiesz, and J. Zegenhagen, Nat Mater 7, 551 (2008). 4) P. J. Sideris, U. G. Nielsen, Z. H. Gan, and C. P. Grey, Science 321, 113 (2008). 5) S. Cadars, G. Layrac, C. Gérardin, M. Deschamps, J. R. Yates, D. Tichit, and D. Massiot, Chem. Mater. 23, 2821 (2011). 6) S. Cadars, et al., Chem. Mater. 24, 4376 (2012). 7) M. Allix, S. Alahrache, F. Fayon, M. Suchomel, F. Porcher, T. Cardinal, and G. Matzen, Adv. Mater. 24, 5570 (2012). 8) J. Shin, et al., Dalton Transactions 39, 2246 (2010).
+

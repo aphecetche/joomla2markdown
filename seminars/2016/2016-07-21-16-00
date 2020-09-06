@@ -1,0 +1,18 @@
+---
+title: "Soutenance de thèse : Optimisation d'une camera Compton au xénon liquide à phase unique pour l'imagerie médicale 3gamma"
+date: "2016-07-21 14:00:00 +0000 UTC"
+author: "Lucía GALLEGO MANZANO "
+location: "Amphi G. Besse"
+type: "spécialisé"
+---
+Résumé
+
+Les travaux décrits dans cette thèse sont centrés sur la caractérisation et l’optimisation d’une caméra Compton à phase unique au xénon liquide pour des applications médicales. Le détecteur a été conçu pour exploiter les avantages d’une technique d’imagerie médicale innovante appelée l’imagerie 3gamma. Elle vise à l’obtention de la position en 3D d’une source radioactive avec une très haute sensibilité et une réduction importante de la dose administrée au patient. L’imagerie 3gamma est basée sur la détection en coïncidence de 3 photons gamma émis par un émetteur spécifique (beta+, gamma), le Sc-44. Un premier prototype de camera Compton au xénon liquide a été développé par le laboratoire Subatech à travers le projet XEMIS (Xenon Medical Imaging System), pour démontrer la faisabilité de l’imagerie 3gamma. Ce nouveau système de détection comporte un système de cryogénie avancé et une électronique front-end à très faible bruit qui fonctionne à la température du xénon liquide. Ce travail a contribué à la caractérisation de la réponse du détecteur et à l’optimisation de la mesure du signal d’ionisation. L'influence de la grille de Frisch sur le signal mesuré a été particulièrement étudiée. Les premières preuves de la reconstruction Compton en utilisant une source de Na-22 (beta+, Egamma = 1.274 MeV) sont aussi rapportées dans cette thèse et valident la preuve de concept de la faisabilité de l’imagerie 3gamma. Les présentés dans cette thèse ont joué un rôle essentiel dans le développement d’une camera Compton au xénon liquide de grandes dimensions pour l’imagerie des petits animaux. Ce nouveau détecteur, appelée XEMIS2, est maintenant en phase de construction.
+
+Abstract
+
+The work described in this thesis is focused on the characterization and optimization of a single-phase liquid xenon Compton camera for medical imaging applications. The detector has been conceived to exploit the advantages of an innovative medical imaging technique called 3gamma imaging, which aims to obtain a precise 3D location of a radioactive source with high sensitivity and an important reduction of the dose administered to the patient. The 3gamma imaging technique is based on the detection in coincidence of 3 gamma-rays emitted by a specific (beta+, gamma) emitter radionuclide, the Sc-44. A first prototype of a liquid xenon Compton camera has been developed by Subatech laboratory within the XEMIS (Xenon Medical Imaging System) project, to proof the feasibility of the 3gamma imaging technique. This new detection framework is based on an advanced cryogenic system and an ultra-low noise front-end electronics operating at liquid xenon temperature. This work has contributed to the characterization of the detector response and the optimization of the ionization signal extraction. A particular interest has been given to the influence of the Frisch grid on the measured signals. First experimental evidences of the Compton cone reconstruction using a source of 22 Na (beta+, Egamma = 1.274 MeV) are also reported in this thesis, which demonstrate the proof of concept of the feasibility of the 3gamma imaging. The results reported in this thesis have been essential for the development of a larger scale liquid xenon Compton camera for small animal imaging. This new detector, called XEMIS2, is now in phase of construction.
+
+
+ 
+

@@ -1,0 +1,30 @@
+---
+title: "Investigating AtO+-(OH−)n complexes at the molecular scale using quantum mechanical methods"
+date: "2015-05-19 14:00:00 +0000 UTC"
+author: "Dumitru-Claudiu Sergentu"
+location: "Amphi CARNOT"
+type: "spécialisé"
+---
+Astatine (
+85
+At) is one of the rarest elements that naturally occur on Earth. It belongs to the halogen family and is traditionally located right below iodine in the periodic table. The major potential application of astatine, through one short-lived isotope (
+211
+At, t1/2=7.2h), concerns nuclear medicine and in particular targeted -therapy1. The idea is to bind 
+211
+At to cancer-cell selective agents such that the emitted 
+α
+-particles of the radioisotope would destroy the target. Since astatine chemistry is not well understood, the practical application of the above-mentioned protocol remains a difficult task.In this context, joint experimental and theoretical works have started in Nantes. The existence of astatine under stable cationic forms, namely At
++
+ and AtO
++
+, as well as the formation of several complexes between them and small organic and inorganic ligands have been reported
+2,3
+. Due to the ultra-trace concentrations that are reachable, no structural information can be experimentally obtained. Therefore, investigations at the molecular scale can only be done by means of molecular modelling. Among the various types of methods that are available, two main classes of quantum mechanical approaches exist, which are based on either wave function theory (WFT) or density functional theory (DFT). In order to tackle properly the electronic structure determinations of astatine-containing species, relativistic effects (“scalar” ones and spin-orbit coupling) must be accounted for. In this work, the quasirelativistic spin-orbit DFT (SO-DFT) method is used since it is particularly efficient and since it was previously used successfully to study astatine-containing systems3.The ligand-exchange reactions in solution allowing one to go from the [AtO(Br)
+2
+]− species to the [AtO(OH)2]− hydrolysed species of AtO
++
+ are investigated. In order to accurately determine the reaction constants in solution, solvation effects must be introduced. In the simplest description, the solvent is modelled by a polarizable dielectric continuum. Although this simplistic approach can lead to accurate values in many cases, we will show that some physics is missed in the description of double ligand-exchange reactions. The computed ligand-exchange constants (Log K
+2exc
+) are indeed smaller than the experimental ones by two units of Log. Therefore, an explicit treatment of the interactions with solvent molecules belonging to the first solvation shell is proposed. When three solvent molecules are explicitly considered, a good agreement with the experimental values is obtained. Indeed, at this level, an efficient cancellation of systematic errors occurs, leading to accurate values.
+
+1 McDevitt, M. R.; Sgouros, G.; Finn, R. D.; Humm, J. L.; Jurcic, J. G.; Larson, S. M.; Scheinberg, D. A.; Eur. J. Nucl. Med. 1998, 25, 1341-1351.2 Champion, J.; Alliot, C.; Renault, E.; Mokili, B. M.; Chérel, M.; Galland, N.; Montavon, G.; J. Phys. Chem. A, 2010, 114, 576-582.3 Champion, J.; Seydou, M.; Andrea, S.-G.; Renault, E. ; Montavon, G. ; Galland, N.; Phys. Chem. Chem. Phys., 2011, 13, 14984-14992.

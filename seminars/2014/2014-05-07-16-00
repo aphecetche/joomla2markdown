@@ -1,0 +1,26 @@
+---
+title: "Soutenance de thèse: Prédiction des taux de fission des coeurs de Chooz et estimation des incertitudes associées dans le cadre de l'expérience Double Chooz"
+date: "2014-05-07 14:00:00 +0000 UTC"
+author: "Anthony Onillon"
+location: "Amphi G. Besse"
+type: "spécialisé"
+---
+Résumé : Double Chooz est une expérience dédiée à la mesure de l'angle de mélange θ13 caractérisant le phénomène d'oscillation des neutrinos. Elle consiste en l'installation de deux détecteurs identiques respectivement installés à 400m et 1050m des deux réacteurs à eau pressurisée de 1,45 GWe de la centrale nucléaire de Chooz dans les Ardennes. Les réacteurs nucléaires sont en effet à l'origine d'un flux intense d'antineutrinos électroniques (de l'ordre de 10
+21
+ antineutrinos/s pour un réacteur de 1 GWe) qui peut être détecté par réaction bêta inverse dans le liquide scintillant des détecteurs. Le paramètre θ
+13
+ peut ensuite être déterminé en cherchant une réduction du nombre d'antineutrinos et une distorsion du flux mesuré dans le détecteur lointain par rapport au détecteur proche. La première phase de l'expérience pour laquelle uniquement le détecteur lointain prend des données a débuté en avril 2011. En l'absence du détecteur proche dont l'installation sera terminée en 2014, une prédiction du flux d'antineutrinos non oscillé attendu dans le détecteur lointain est nécessaire à la prédiction de θ
+13
+. Ce thèse est dédiée au travail de simulation réalisé en vue de prédire les taux de fission des deux cœurs de Chooz à l'origine des antineutrinos émis par les réacteurs. Pour cela des simulations de cœurs complet des réacteurs ont été développées à l'aide du code de simulation MCNP Utility for Reactor Evolution (MURE). Les résultats de ces simulations ont permis de déterminer les taux de fission et les erreurs systématiques associées durant les périodes de prise de données de l'expérience et d'aboutir à la première indication d'un angle θ
+13
+ non-nul en novembre 2011.  Mots clés : Double Chooz, oscillation neutrino, simulation réacteur, MURE, MCNP
+. 
+
+
+
+
+
+
+
+
+Abstract : The Double Chooz experiment is designed to search for a non-vanishing mixing angle θ13 characterizing the ability of neutrinos to oscillate. It consists in two identical detectors located respectively at 400m and 1050m of the two pressurized water reactors of 1,45 GWe of the Chooz nuclear plant in the French Ardennes. Indeed, nuclear reactor are huge electron antineutrino emitters (about 1021 antineutrinos/s for a 1 GWe reactor). In Double Chooz, antineutrinos are detected by the inverse beta decay process in the liquid scintillator of the detectors. The θ13 parameter can be investigated searching for  disappearance and  energy distortion in the far detector with respect to the near detector. The first phase of the experiment during which only the far detector is taking data has started in April 2011. In absence of far detector whose installation will be completed in 2014, a prediction of the non-oscillated antineutrino flux and spectrum shape expected in the far detector is mandatory to measure  θ13. In this thesis, we present the simulation work performed to predict the fission rates of both Chooz cores responsible for the reactor antineutrino flux. In this view, a complete core model has been developed with the MCNP Utility for Reactor Evolution (MURE) simulation code. The results of these simulations were used to determine the fission rates and associated systematic errors since the beginning of data taking and led to the first indication for a non-zero θ13 mixing angle in November 2011.   Keywords: Double Chooz, neutrino oscillation, reactor simulation, MURE, MCNP.

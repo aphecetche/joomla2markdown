@@ -1,0 +1,94 @@
+---
+title: "Perspective for a very fast radiolabeling pathway of new astatine compounds and comparaison studies in different medias "
+date: "2019-07-04 12:00:04 +0000 UTC"
+author: "Sylvain Pardoue"
+location: "Amphi Galois"
+type: "heures-thésards"
+---
+# **
+
+Sylvain Pardoue
+1
+*
+
+****
+, Véronique Baty
+1
+, David Deniaud
+2
+, François Guérard
+3
+, Gilles Montavon
+1
+.
+**
+
+
+ 
+
+
+1
+
+
+SUBATECH, IMT Altantique, Nantes, France, 
+2
+CEISAM, University of Sciences, Nantes, France, 
+3
+CRCINA, IRSN, Nantes, France.
+
+
+## 
+ *e-mail:
+ 
+[sylvain.pardoue@subatech.in2p3.fr](mailto:sylvain.pardoue@subatech.in2p3.fr)
+
+
+
+Astatine is the rarest natural element in the Earth’s crust. This element is only available for use 
+_via_
+ artificial isotopes. Those isotopes have several hours half-life, enough to be studying 
+_via_
+ indirect characterisation methods. Due to the ultra-trace concentrations of astatine produced, we have to couple the results with computational chemistry to validate experimental data. Astatine-211 is a very promising radioisotope for nuclear medicine. Being a halogen and a 100% alpha emitter makes him one of the best candidate for an alpha radiotherapy. However, the current developed radiolabelling molecules with carbon-astatine bound undergoing deastatination during the internalization in cellules, leading to a loss of effective activity [1]. To bypass this problematic, a boron-astatine bound instead of the classic organic carbon-astatine bound is using with the help of boron clusters [2]. Those compounds leads to good results in terms of stability [3], thanks to the stronger boron-astatine bound compared to the carbon-astatine one [4][5]. However, antibody distribution depends hardly from the linker and the nature of the boron cluster and the counter ion used for the boron cluster [3;6]. In SUBATECH, with the collaboration of CEISAM and CRCINA, in Nantes, we developed a new very reactive compound with astatine, using iodonium salts as precursor. Those precursors are developing in CRCINA for astatine radiolabelling [7]. With this new compound, we have quantitative radiolabelling in only a few to thirty minutes at room temperature. Those results breaks the previous efficiency of any other organic compounds formation of carbon-astatine bound. We are currently studying the behaviour of this new compound with stability tests. We will compare the stability of this new molecule with a simple model of astatine molecule, mimicking the current one developed for biocoupling: the SAB (N-succinimidyl 3-astatobenzoate). We tested for both molecules; oxidizing aqueous solutions like D. Tezé previously did in SUBATECH [8], but also the stability in phosphate buffered saline and physiologic serum. With those conditions, we will check if the deastatination process is due to the internalisation process, and try to understand the mechanisms behind this phenomenon. All the experimental data are acquired using a C18 column on a HPLC device coupled with a gamma spectrometer to identify astatine compounds. The stability studies in different solutions is either done in HPLC-Gamma device or by CCM analysed on a cyclone phosphor imager scanner.
+
+
+
+ 
+
+
+
+References
+
+
+
+[1] F. Guérard, J.-F. Gestin, M. W. Brechbiel, _Cancer Biother Radiopharm_., **2013**, 28(1): 1–20.
+
+
+
+[2] D. S. Willbur, M.-K. Chyan, D. K. Hamlin, R. l. Vassella, T. J. Wedge, M. F. Hawthrone, _Bioconjugate Chem._, **2007**, 18, 1226-1240.
+
+
+
+[3] D. S. Willbur, M.-K. Chyan, D. K. Hamlin, H. Nguyen, R. L. Vassella, _Bioconjugate Chem._, **2011**, 22 (6), 1089-1102. [4] H. H. Coenen, S. M. Moerlin, G. Stöcklin, _Radiochimica_, **1983**, 34, 47-68. [5] T. Ayed, J. Pilmé, D. Tézé, F. Bassal, J. Barbet, M. Chérel, J. Champion, R. Maurice, G. Montavon, N. Galland, _European Journal of Medicinal Chemistry_, **2016**, _116_, 156-164.
+
+
+
+[6] D. S. Willbur, M.-K. Chyan, H. Nakamae, Y. Chen, D. K. Hamlin, E. B. Santos, B. T. Kornblit, B. M. Sandmaier, _Bioconjugate Chem._, **2012**, 23 (3), 409-420.
+
+
+
+[7] F. Guérard, L. Navarro, Y.-S. Lee, A. Roumesy, C. Alliota, M. Chérel, M.W. Brechbiel and J.-F. Gestin, 
+_Bioorganic &amp; Medicinal Chemistry_
+, 
+**2017**
+, 25, 5975–5980.
+
+
+
+[8] D. Teze, D.-C. Sergentu, V. Kalichuk, J. Barbet, D. Deniaud, N. Galland, R. Maurice &amp; G. Montavon, _Nature_ : _Scientific Reports_, **2017**, 7: 2579.
+
+
+_
+Acknowledgments: We want to acknowledge the experimentation founding from ARRONAX+ and IRON Project, astatine production from ARRONAX, and the thesis founding with Contrat Doctoral Spécifique Normalien (CDSN), from Ecole Normale Supérieur Paris-Saclay.
+_
+
+[Link indico](https://indico.in2p3.fr/event/19451/)

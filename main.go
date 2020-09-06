@@ -5,6 +5,7 @@ import (
 	"flag"
 	"os"
 	"path/filepath"
+	"time"
 
 	"github.com/aphecetche/joomla2markdown/wsub"
 	_ "github.com/go-sql-driver/mysql"
@@ -31,8 +32,13 @@ var content = flag.Bool("content", false, "convert main content (articles)")
 
 func convertSeminars(db *sql.DB) {
 	// Get seminars from DB
-	_, err := wsub.Seminars(db, "true")
+	seminars, err := wsub.Seminars(db, "true")
 	checkErr(err)
+	paris, err := time.LoadLocation("Europe/Paris")
+	for _, s := range seminars {
+		filename := s.Date.In(paris).Format("2006-01-02-15-04")
+		writeSeminarToFile(s, filename)
+	}
 
 }
 
@@ -81,6 +87,15 @@ func main() {
 	if *seminars {
 		convertSeminars(db)
 	}
+}
+
+func writeSeminarToFile(s *wsub.Seminar, filename string) {
+	path := "seminars/" + s.Date.Format("2006")
+	os.MkdirAll(path, os.ModePerm)
+	file, err := os.Create(path + "/" + filename)
+	defer file.Close()
+	checkErr(err)
+	s.Write(file)
 }
 
 func writeToFile(c *wsub.Content, filename string, articles map[int]wsub.Content) {

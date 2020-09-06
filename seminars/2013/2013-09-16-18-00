@@ -1,0 +1,16 @@
+---
+title: "The weak magnetism term in nuclear beta decay"
+date: "2013-09-16 16:00:00 +0000 UTC"
+author: "Nathal Severijns"
+location: "Amphi GALOIS"
+type: "spécialisé"
+---
+The main focus of the activities of the weak interactions group at KU Leuven is the investigation of weak interaction properties at low energies, i.e. in nuclear beta decay or with neutrons. An important part of this constitutes of correlation measurements between the spin and momentum vectors of the different particles involved in beta decay. Several other teams worldwide are active in this field. Improvements in experimental techniques as well as in the reliability of the Geant simulation code for typical beta particle energies (see e.g. [Wau09, Ger13]), have provided a series of results from such correlation measurements with precisions of the order of 1% and even down to 0.5% [Sev06, Sev13]. At this level of precision the effect of the induced weak currents which is, for allowed beta decays, dominated by weak magnetism, cannot be neglected anymore [e.g. Wau10].
+
+We have therefore started a project to investigate weak magnetism in more detail, based on both existing experimental data (using the Conserved Vector Current hypothesis) as well as new beta spectrum shape measurements with several experimental setups. A first one uses Si pin-diodes in different configurations. The second is the so-called miniBETA spectrometer consisting of two multiwire drift chambers combined with two NaI detectors (see e.g. Kon09]) that was developed in collaboration with the Jagiellonian University Krakow. An overview will be given of the status and prospects of this project.
+
+Apart from the above mentioned goals, the project could also provide valuable input for nuclear structure studies and contribute to the problem of the reactor antineutrino anomaly that was pointed out recently [Men11, Mul11, Hub11].
+
+  [Sev06] N. Severijns, M. Beck and O. Naviliat-Cuncic, Rev. Mod. Phys. 78 (2006) 991 [Sev13] N. Severijns and O. Naviliat-Cuncic, Physica Scripta T152 (2013) 014018 [Wau09] F. Wauters et al., Nucl. Instrum. Methods A 609 (2009) 156 [Wau10] F. Wauters et al., Phys. Rev. C 82 (2010) 055502 [Ger13] G. Soti et al., Nucl. Instrum. Methods A 728 (2013) 11 [Hub11] P. Huber, Phys. Rev. C 84 (2011) 024617 [Loj09] K. Lojek, K. Bodek and M. Kuzniak, Nucl. Instrum. Methods A 611 (2009) 284 [Men11] G. Mention et al., Phys. Rev. D 83 (2011) 073006 [Mul11] Th. A. Mueller et al., arXiv:1101.2663v3 [hep-ex]
+
+[transparents](images/Communication/seminaires/NathalSeverijns.pdf)

@@ -1,0 +1,22 @@
+---
+title: "Les heures thésards édition 2017 : Cyclotron produced terbium radionuclides for theragnostic applications "
+date: "2017-05-04 14:00:00 +0000 UTC"
+author: "Roberto Formento"
+location: "Amphi G. Besse"
+type: "spécialisé"
+---
+A new facility, namely CERN-MEDICIS, which will produce radionuclides for medical application is under completion at CERN. It will be constructed next to ISOLDE, radioactive ion beam facility with a 1.4 GeV proton beam and the on-line mass separator which allows the production of a spread variety of radioisotopes for different aims. MEDICIS facility will use the almost 85% of the incident beam which will not interact with ISOLDE target for radionuclides production toward an off-line mass separator. [1] CERN- MEDICIS-PROMED is a Marie Sklodowska-Curie innovative training network of the Horizon 2020 European Commission`s program. The goal is to train young scientists to the production and use of innovative radionuclides and to develop a network of expert within Europe. The EU support consists of 15 PhDs based in different partner sites all over the Europe which are coordinated by CERN and it bridges together industries, research centers, universities and hospitals. It is a wide project that covers all the aspects from the radioisotope production to the medical application passing through the collection, shipment, safety control and radiochemical synthesis.
+
+Within the MEDICIS-PROMED project, I am investigating the possibility to transfer the MEDICIS technology to the industry. The aim of my work is to infer the feasibility of producing innovative radioisotopes for theragnostic applications using a commercial middle sized high-current cyclotron while exploiting the technology of the mass separator developed within the MEDICIS-PROMED project. This will allow the production of high specific activity radioisotopes, not achievable with the common post-processing by chemical separation. The first step of my work was to determine radionuclide of interest for theragnostic applications. A list of interesting radionuclides has been made evaluating the radiological properties for both imaging and therapy (half-life, decay and emission energy) as well as their chemical properties (i.e. labeling to peptides, antibodies). Four chemical elements have been identified and will be studied: yield evaluation, target preparation, chemical and mass separation.
+
+The most interesting one is terbium for its attractive quadruplet of radionuclides for medical applications: α-therapy, PET, SPECT, β-therapy: respectively Tb-149, Tb-152 Tb-155, Tb-161.
+
+Whereas for cyclotron production of Tb-152 and Tb-155 a natural Gadolinium target is adequate enough, for the production of Tb-149, the lightest alpha emitter, irradiation of enriched gadolinium is mandatory. A comparative study of the production from different enriched target isotopes is made considering the cross sections of the reactions of interest and the achievable yield for each of them, with the maximum available enrichment on the market. It results that the 67.1 % enriched Gd-154 target as the best potential target with a 70 MeV cyclotron proton beam.
+
+Next step will be the target preparation with electrodeposition process followed by experiments at the off-line facility at CERN in order to define the best setting parameters for terbium extraction from gadolinium targets. These elements will give the optimal parameters for the final experiment consisting firstly in the irradiation of a gadolinium target at Arronax cyclotron and mass separation at CERN-MEDICIS then.
+
+This research project has been supported by a Marie Skłodowska-Curie Innovative Training Network Fellowship of the European Commission’s Horizon 2020 Programme under contract number 642889 MEDICIS-PROMED
+
+References
+
+[1] R. Augusto, L. Buehler, Z. Lawson, S. Marzari, M. Stachura, T. Stora, CERN-MEDICIS (Medical Isotopes Collected from ISOLDE): A New Facility, Applied Science 2014, 4, 265-281, ISSN 2076-3417.

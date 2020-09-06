@@ -1,0 +1,76 @@
+---
+title: "New aspects of QCD dynamics at high parton density:  Jet Evolution in the Quark-Gluon-Plasma"
+date: "2013-10-17 11:00:00 +0000 UTC"
+author: "Yacine Mehtar-Tani"
+location: "Amphi PASCAL"
+type: "spécialisé"
+---
+
+ 
+
+
+ 
+
+
+QCD jets are being extensively investigated in Heavy Ion Collisions at the LHC: firstly, as a probe of the dense partonic medium (often referred to as the Quark-Gluon-Plasma (QGP)) known to form in such high energy collisions ; secondly, as they provide us with a new laboratory for the study of QCD dynamics in a regime of high parton density. 
+
+
+ 
+
+
+In this work, we show that in the presence of a dense medium the large angle component of a high energy jet can be described as a classical branching process thanks to the large separation between the time scale of the branching of a parton into two partons and that involved in the classical propagation of a parton in the medium, which is typically of the order of the length of the medium L. In this kinematic limit, the branching process is quasi-instantaneous and can occur anywhere along the medium with constant rate. A master equation for the generating functional of multi-parton distributions is derived. 
+
+
+ 
+
+
+This parton cascade is mostly made of relatively soft gluons, whose production is not suppressed by the Landau-Pomeranchuk-Migdal effect. Unlike for usual QCD cascades in the vacuum, where the typical splittings are very asymmetric (soft and collinear), the medium-induced  branchings are quasi-democratic and lead to wave turbulence. This results in a very efficient mechanism for the transport of energy at large angles with respect to the jet axis, which might explain the di-jet asymmetry observed in Pb-Pb collisions at the LHC.
+
+
+ 
+
+
+Furthermore, we discuss another type of radiation that occur at time scales much smaller than the typical branching time discussed above, and transverse momenta much larger than the typical transverse momenta generated in a branching process. These radiative corrections, enhanced by a double logarithm $\alpha_s \log^2 (\hat q L /Q_0ˆ2)$ , where $\hat q$ is the quenching parameter that encodes medium properties and L the size of the medium, are strongly ordered and overlapping in formation time.
+
+
+We show that these coherent branchings, that are of a different nature than the incoherent branchings resummed in the generating functional, do not spoil the probabilistic picture as they can be absorbed in a renormalization of the quenching parameter.
+
+
+ 
+
+
+Références :
+
+
+ 
+
+
+[1] "Medium-induced QCD cascade: democratic branching and wave turbulence''
+
+
+J. -P. Blaizot, E. Iancu and Y. Mehtar-Tani,
+
+
+Phys. Rev. Lett.  111 , 052001 (2013)
+
+
+arXiv:1301.6102 [hep-ph]
+
+
+ 
+
+
+[2] "Medium-induced gluon branching''
+
+
+ J. -P. Blaizot, F. Dominguez, E. Iancu and Y. Mehtar-Tani.
+
+
+JHEP 1301, 143 (2013)
+
+
+arXiv:1209.4585 [hep-ph]
+
+
+ 
+

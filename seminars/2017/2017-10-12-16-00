@@ -1,0 +1,14 @@
+---
+title: "Testing FLUKA on neutron activation at the Peruvian research reactor"
+date: "2017-10-12 14:00:00 +0000 UTC"
+author: "José Bazo"
+location: "Amphi G. Besse"
+type: "spécialisé"
+---
+We have used the Peruvian RP-10 Nuclear Research Reactor at 4.5 MW to irradiate with neutrons samples of two characteristic semiconductor sensor materials: silicon and germanium. We have measured with high-resolution gamma spectroscopy their radionuclides photon spectra, quantifying four radioisotopes. In this talk, we present the comparison of the measured emission spectrum of the produced radionuclides with FLUKA Monte Carlo simulations. We quantify the uncertainties associated with the relative photon peak amplitude predictions in the simulations. These results can be applied to radiation damage studies of new semiconductor sensors that will be installed in the coming upgrade of LHC's subdetectors.
+
+
+
+
+
+
