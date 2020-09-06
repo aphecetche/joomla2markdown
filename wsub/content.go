@@ -114,15 +114,18 @@ func removeStyle(s string) string {
 	return render(doc)
 }
 
-func changeImageRefs(s string, cat string) string {
-	s = stringReplace(s, "images/Recherche/"+cat, "images")
-	s = stringReplace(s, "images/Recherche/"+strings.Title(cat), "images")
-	return s
-}
-
 func href(t html.Token) string {
 	for _, a := range t.Attr {
 		if a.Key == "href" {
+			return a.Val
+		}
+	}
+	return ""
+}
+
+func img(t html.Token) string {
+	for _, a := range t.Attr {
+		if a.Key == "img" {
 			return a.Val
 		}
 	}
@@ -148,11 +151,37 @@ func articleId(href string) int {
 	return aid
 }
 
-func massageLinks(s string, articles map[int]Content) string {
+func massageImages(s string) string {
+	r := strings.NewReplacer(
+		"(images/Recherche/Erdre", "(images",
+		"(images/Recherche/Astro", "(images",
+		"(images/Recherche/Plasma", "(images",
+		"(images/Recherche/Prisma", "(images",
+		"(images/Recherche/Radiochimie", "(images",
+		"(images/Recherche/TheorieBE", "(images",
+		"(images/Recherche/TheorieHE", "(images",
+		"(images/Recherche/Xenon", "(images",
+		"(images/Recherche/neutrino", "(images",
+		"(images/Enseignement", "(images",
+		"(images/Recherche", "(images",
+		"(images/banners", "(images")
+	return r.Replace(s)
+}
+
+func massageDocumentLinks(s string) string {
 	r := strings.NewReader(s)
 	z := html.NewTokenizer(r)
 
-	var joomlaLink = regexp.MustCompile(`^index.php`)
+	documentDir := "doc"
+
+	imre := strings.NewReplacer(
+		"images/Enseignement", documentDir,
+		"images/Recherche/Plasma", documentDir,
+		"images/Communication", documentDir,
+		"images/Administration", documentDir)
+
+	var pdfLink = regexp.MustCompile(`images\/.*\.pdf`)
+	var externalLink = regexp.MustCompile(`^http`)
 
 	rep := make(map[string]string)
 
@@ -167,9 +196,50 @@ out:
 			t := z.Token()
 			if t.Data == "a" {
 				h := href(t)
+				if externalLink.MatchString(h) {
+					break
+				}
+				fmt.Println(h, "match=", pdfLink.MatchString(h))
+				if pdfLink.MatchString(h) {
+					rep[h] = imre.Replace(h)
+				}
+			}
+		}
+	}
+	s = html.UnescapeString(s)
+	for key, element := range rep {
+		s = strings.ReplaceAll(s, key, element)
+	}
+	return s
+}
+
+func massageJoomlaLinks(s string, articles map[int]Content) string {
+	r := strings.NewReader(s)
+	z := html.NewTokenizer(r)
+
+	var joomlaLink = regexp.MustCompile(`(^index.php)|(component\/content)`)
+	var externalLink = regexp.MustCompile(`^http`)
+
+	rep := make(map[string]string)
+
+out:
+	for {
+		tt := z.Next()
+		switch {
+		case tt == html.ErrorToken:
+			// end of document
+			break out
+		case tt == html.StartTagToken:
+			t := z.Token()
+			if t.Data == "a" {
+				h := href(t)
+				if externalLink.MatchString(h) {
+					break
+				}
 				if joomlaLink.MatchString(h) {
 					aid := articleId(h)
 					newpath := articles[aid].FullPath()
+					newpath = strings.ReplaceAll(newpath, ".md", "")
 					rep[h] = "/" + newpath
 				}
 			}
@@ -182,17 +252,35 @@ out:
 	return s
 }
 
+func changeMember(s string, cat string) string {
+	comp := `
+import Members from "gatsby-theme-ldap/src/components/Members"
+
+<Members group="`
+
+	comp += cat
+	comp += "\" />"
+	comp += "\n"
+
+	return strings.ReplaceAll(s, "{loadposition membres}", comp)
+}
+
 // massage cleans up a bit the html string to
 // remove inline style, empty paragraph, usage
 // of <br/> etc...
-func massage(s string, cat string, articles map[int]Content) string {
+func massage(s string, cat string, articles map[int]Content, verbose bool) string {
 	s = stringReplace(s, "<p>&nbsp;</p>", "")
 	s = removeStyle(s)
 	s = stringReplace(s, "<br/>", "")
 	s = changeAccents(s)
-	s = changeImageRefs(s, cat)
 
-	s = massageLinks(s, articles)
+	s = massageJoomlaLinks(s, articles)
+	s = massageDocumentLinks(s)
+
+	if verbose {
+		fmt.Printf(s)
+		panic("this is the end")
+	}
 
 	file, err := ioutil.TempFile("", "prefix")
 	if err != nil {
@@ -207,7 +295,10 @@ func massage(s string, cat string, articles map[int]Content) string {
 	if err != nil {
 		log.Fatal(err)
 	}
-	return out.String()
+	s = massageImages(out.String())
+	s = changeMember(s, cat)
+
+	return s
 }
 
 func (w Content) FullPath() string {
@@ -245,11 +336,12 @@ func (w Content) Write(out io.Writer, articles map[int]Content) {
 
 	fmt.Fprintln(out, "---")
 
-	fmt.Fprintf(out, massage(w.Introtext, w.Category.Title, articles))
+	verbose := false
+	//verbose = w.FullPath() == "enseignement/masters.md"
 
-	// if w.FullPath() == "recherche/astro/astro-presentation.md" {
-	// 	panic("this is the end")
-	// }
+	outstring := massage(w.Introtext, w.Category.Title, articles, verbose)
+	fmt.Fprintf(out, outstring)
+
 }
 
 func Contents(db *sql.DB, where string,
