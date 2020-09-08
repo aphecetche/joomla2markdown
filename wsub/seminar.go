@@ -99,11 +99,23 @@ func Seminars(db *sql.DB, where string) ([]*Seminar, error) {
 func (s Seminar) Write(out io.Writer) {
 	//paris, _ := time.LoadLocation("Europe/Paris")
 	fmt.Fprintln(out, "---")
-	fmt.Fprintf(out, "title: \"%s\"\n", s.Title)
-	fmt.Fprintf(out, "date: \"%s\"\n", s.Date)
 	fmt.Fprintf(out, "author: \"%s\"\n", s.Author)
+	fmt.Fprintf(out, "author_url: \"%s\"\n", s.AuthorURL)
+	fmt.Fprintf(out, "date: \"%s\"\n", s.Date)
 	fmt.Fprintf(out, "location: \"%s\"\n", s.Location)
+	fmt.Fprintf(out, "title: \"%s\"\n", s.Title)
+	fmt.Fprintf(out, "author_filiation: \"%s\"\n", s.AuthorFiliation)
+	fmt.Fprintf(out, "author_filiation_url: \"%s\"\n", s.AuthorFiliationURL)
 	fmt.Fprintf(out, "type: \"%s\"\n", s.Type)
+	fmt.Fprintf(out, "author2: \"%s\"\n", s.Author2)
+	fmt.Fprintf(out, "author_url2: \"%s\"\n", s.AuthorURL)
+	fmt.Fprintf(out, "author_filiation2: \"%s\"\n", s.AuthorFiliation2)
+	fmt.Fprintf(out, "author_filiation_url2: \"%s\"\n", s.AuthorFiliationUrl2)
+	fmt.Fprintf(out, "title2: \"%s\"\n", s.Title2)
 	fmt.Fprintln(out, "---")
 	fmt.Fprintln(out, html2md.Convert(cleanupHTML(s.Summary)))
+	if len(s.Summary2) > 0 {
+		fmt.Fprintln(out, "\n<!-- SUMMARY2 -->\n")
+		fmt.Fprintln(out, html2md.Convert(cleanupHTML(s.Summary2)))
+	}
 }

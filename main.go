@@ -92,7 +92,7 @@ func main() {
 func writeSeminarToFile(s *wsub.Seminar, filename string) {
 	path := "seminars/" + s.Date.Format("2006")
 	os.MkdirAll(path, os.ModePerm)
-	file, err := os.Create(path + "/" + filename)
+	file, err := os.Create(path + "/" + filename + ".md")
 	defer file.Close()
 	checkErr(err)
 	s.Write(file)

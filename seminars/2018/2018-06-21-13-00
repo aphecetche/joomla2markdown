@@ -1,8 +1,0 @@
----
-title: "Development & Applications of the iQID Camera: A Quantitative, Single-Particle Imaging Detector for small-animal SPECT and Targeted Radionuclide Therapy "
-date: "2018-06-21 11:00:00 +0000 UTC"
-author: "Brian Miller"
-location: "Amphi PASCAL"
-type: "spécialisé"
----
-Cancer treatment often fails when metastatic lesions are not adequately treated.  Targeted therapies using alpha-particle emitters promises to provide a most effective approach to cell-directed treatment of metastatic lesions in cancer therapy.   Researchers need capabilities and tools to show that the local biodistribution of targeted, short-range alpha-emitters is sufficient to thoroughly irradiate and destroy micrometastases. This talk will present an overview of a high-resolution imaging technology referred to as iQID (ionizing-radiation Quantum Imaging Detector).  iQID is sensitive to a broad range of ionizing-radiation including gamma-ray and X-ray photons as well as alpha, beta, and neutron particles.   iQID combines advances in CCD/CMOS cameras,  graphics processing hardware, and night-vision technology for real-time imaging and position estimation of individual particles.  iQID has proven beneficial in a number of  imaging applications and was originally developed as a high-resolution gamma-ray camera for pre-clinical single-photon emission computed tomography (SPECT). iQID’s high sensitivity to alpha and beta particles has been expanded to single-particle digital autoradiography and the technology is actively being implemented as a high-resolution imaging and microdosimety tool for researchers investigating the use of alpha and beta particles in cancer therapy.

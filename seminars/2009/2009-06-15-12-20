@@ -1,8 +1,0 @@
----
-title: "La Grille de Calcul du LHC"
-date: "2009-06-15 10:20:34 +0000 UTC"
-author: "Laurent Aphecetche"
-location: "Amphi Galois"
-type: "ITA"
----
-Le LHC générera des quantités fantastiques de données, lorsqu'il produira des collisions. La seule façon de relever ce défi informatique est d'utiliser des milliers d'ordinateurs et des milliers de disques durs répartis dans le monde entier, au sein de ce que l'on nomme une grille de calcul (et de stockage). Je présenterai les grands principes d'une grille de calcul, de façon générale, puis je rentrerai un peu plus dans les détails de la plus grosse grille au monde : LCG, la grille de calcul du LHC. Enfin, je dirai deux mots de l'implication de Subatech dans ce projet.

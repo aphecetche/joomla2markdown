@@ -1,8 +1,0 @@
----
-title: "Dynamical Thermalization in Heavy-Ion Collisions "
-date: "2020-06-18 12:00:54 +0000 UTC"
-author: "Mahbobeh JAFARPOUR "
-location: "En visio"
-type: "heures-thésards"
----
-The development of the merged EPOS+PHSD approach is one way to study the influence of the initial non-equilibrium stage of the heavy-ion reactions on the final observables. The microscopic understanding of the initial phase of heavy-ion collisions is a intricate problem, in this respect the EPOS and PHSD approaches provide a unique possibility to address this problem. We employ the EPOS to do the initial stage of Heavy-Ion Collisions based on a multiple Pomeron exchange in Gribov Reggeon Field Theory formalism. EPOS is a particularly successful event generator and universal model for all collisions. PHSD is a microscopic covariant dynamical approach for strongly interacting systems formulated based on Kadanoff-Baym equations. Following injecting particles from EPOS to PHSD, we investigated about the “flow behavior”. The easiest way to study was to look at the particle production. Once there are sufficient interactions, the magnitude of the flow increases, indicating that we are close to Thermalization. I am going to present our results concerning various observables like “elliptical flow” and "pt spectra" in EPOS+PHSD and make compare with EPOS+hydro, EPOS-hydro and pure PHSD.

@@ -1,8 +1,0 @@
----
-title: "Constraining  sub-GeV dark-matter models via analysis of electronic response of semiconductor targets"
-date: "2017-07-03 11:00:00 +0000 UTC"
-author: "Walter Tarantino"
-location: "Amphi PASCAL"
-type: "spécialisé"
----
-Light dark matter scenarios are becoming increasingly plausible. For a DM particle of mass in the MeV to GeV range, scattering off electrons might represent a more favourable channel with respect to nuclei scattering. In this context, experiments based on semiconductor targets, which are characterised by an electron ionization energy of around 1 eV, may enable to explore new regions of the parameter space of dark matter models. Accurate computation of the relevant dark-matter--electron scattering amplitudes are quite nontrivial, due to the complication of treating electronic bound states. Moreover, only recently appropriate numerical tools have started being developed. In this talk I shall discuss how these tools can be used to discriminate dark matter models and possibly help in designing new experiments.
