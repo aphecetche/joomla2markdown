@@ -13,6 +13,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/lunny/html2md"
 	"golang.org/x/net/html"
 )
 
@@ -227,7 +228,7 @@ import Members from "gatsby-theme-ldap/src/components/Members"
 // massage cleans up a bit the html string to
 // remove inline style, empty paragraph, usage
 // of <br/> etc...
-func massage(s string, cat string, articles map[int]Content, verbose bool) string {
+func massage(s string, cat string, articles map[int]Content, verbose bool, npx bool) string {
 	s = cleanupHTML(s)
 
 	s = massageJoomlaLinks(s, articles)
@@ -238,7 +239,11 @@ func massage(s string, cat string, articles map[int]Content, verbose bool) strin
 		panic("this is the end")
 	}
 
-	s = massageImages(html2mdnpx(s))
+	if npx {
+		s = massageImages(html2mdnpx(s))
+	} else {
+		s = massageImages(html2md.Convert(cleanupHTML(s)))
+	}
 	s = changeMember(s, cat)
 
 	return s
@@ -260,6 +265,7 @@ func (w Content) FileName() string {
 }
 
 func (w Content) Write(out io.Writer, articles map[int]Content) {
+
 	fmt.Println("-----", w.FullPath())
 	fmt.Fprintln(out, "---")
 	title := stringReplace(w.Title, `\`, `\\`) // for mathjax syntax
@@ -273,16 +279,38 @@ func (w Content) Write(out io.Writer, articles map[int]Content) {
 	fmt.Fprintf(out, "asides: [\"%s.+menu+\"]\n", w.Category.Title)
 
 	base, _ := filepath.Split(w.DirName())
-	if len(base) > 0 {
-		fmt.Fprintf(out, "layout: \"%s\"\n", filepath.Clean(base))
+	layout := filepath.Clean(base)
+
+	r := strings.NewReplacer(
+		"services-techniques-et-administration", "recherche")
+	layout = r.Replace(layout)
+
+	var enseignement = regexp.MustCompile(`enseignement\/`)
+	if enseignement.MatchString(w.FullPath()) {
+		layout = "recherche"
 	}
 
+	nolayout := []string{`enseignement\/enseignement`,
+		`enseignement\/cha`,
+		`enseignement\/masters\.md`}
+
+	for _, t := range nolayout {
+		var test = regexp.MustCompile(t)
+		if test.MatchString(w.FullPath()) {
+			layout = ""
+		}
+	}
+
+	if len(layout) > 1 {
+		fmt.Fprintf(out, "layout: \"%s\"\n", layout)
+	}
 	fmt.Fprintln(out, "---")
 
 	verbose := false
+	npx := true
 	//verbose = w.FullPath() == "enseignement/masters.md"
 
-	outstring := massage(w.Introtext, w.Category.Title, articles, verbose)
+	outstring := massage(w.Introtext, w.Category.Title, articles, verbose, npx)
 	fmt.Fprintf(out, outstring)
 
 }

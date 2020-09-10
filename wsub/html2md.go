@@ -16,6 +16,8 @@ func cleanupHTML(s string) string {
 	s = removeStyle(s)
 	s = stringReplace(s, "<br/>", "")
 	s = changeAccents(s)
+	s = stringReplace(s, "{emailcloak=off}", "")
+	s = stringReplace(s, "{loadposition contact}", "")
 	return s
 }
 
