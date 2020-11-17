@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"flag"
+	"fmt"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -93,6 +94,11 @@ func convertContent(db *sql.DB) {
 		dir := filepath.Join("content", r.DirName())
 		os.MkdirAll(dir, os.ModePerm)
 		filename := filepath.Join(dir, r.FileName())
+		if len(filename) == 0 {
+			fmt.Printf("WARNING: skipping a file : %s\n",
+				r.String())
+			continue
+		}
 		writeToFile(&r, filename, articles)
 	}
 }

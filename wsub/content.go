@@ -260,8 +260,38 @@ func (w Content) DirName() string {
 	s = strings.Replace(s, " ", "-", -1)
 	return strings.ToLower(s)
 }
+
+func (w Content) Basename() string {
+	renamings := map[string]string{
+		"chimie-en": "radiochimie-presentation",
+		"radiochemistry-theme-radioisotopes-ultra-traces":                                "isotopes",
+		"radiochemistry-theme-transport":                                                 "transfert",
+		"radiochemistry-theme-physical-chemistry-of-irradiated-materials":                "radiolyse",
+		"radiochemistry-publications-2009-2014":                                          "radiochimie-publications",
+		"radiochemistry-conference-presentations-posters-and-invited-seminars-2010-2014": "radiochimie-communication",
+		"funding-agencies":             "tutelles",
+		"presentation-of-plasma-group": "presentation-groupe-plasma",
+		"research":                     "recherche",
+	}
+	for f, t := range renamings {
+		if w.Alias == f {
+			return t
+		}
+	}
+	return w.Alias
+}
+
 func (w Content) FileName() string {
-	return fmt.Sprintf("%s.md", w.Alias)
+	if w.Language == "fr-FR" {
+		return fmt.Sprintf("%s.fr.md", w.Basename())
+	}
+	if w.Language == "en-GB" {
+		return fmt.Sprintf("%s.en.md", w.Basename())
+	}
+	if w.Language == "*" {
+		return fmt.Sprintf("%s.xx.md", w.Basename())
+	}
+	return ""
 }
 
 func (w Content) Write(out io.Writer, articles map[int]Content) {
@@ -322,7 +352,7 @@ func Contents(db *sql.DB, where string,
 	sqlstr := `SELECT id, title, alias, introtext, state, ` +
 		` catid, created, modified,language FROM jlabo.wsub_content `
 
-	qs := sqlstr + "WHERE " + where + " and state=1 and language<>'en-GB'"
+	qs := sqlstr + "WHERE " + where + " and state=1"
 
 	// run query
 	q, err := db.Query(qs)
