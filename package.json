@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/aphecetche/joomla2markdown#readme",
   "devDependencies": {
-    "to-markdown-cli": "^0.4.1"
+    "to-markdown-cli": "^0.4.4"
   }
 }
