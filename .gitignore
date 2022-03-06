@@ -12,8 +12,9 @@
 *.out
 
 # executable
-joomla2hugo
+joomla2markdown
 
 # generated files
 content
 menu.toml
+seminars/*

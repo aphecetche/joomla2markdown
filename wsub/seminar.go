@@ -48,6 +48,10 @@ type Seminar struct {
 	_exists, _deleted bool
 }
 
+func (w Seminar) IsTwo() bool {
+	return len(w.Title2) > 0
+}
+
 func (w Seminar) String() string {
 	return fmt.Sprintf("[%s]:%s:%s", w.Alias, w.Title, w.Type)
 }
@@ -96,26 +100,28 @@ func Seminars(db *sql.DB, where string) ([]*Seminar, error) {
 	return res, nil
 }
 
-func (s Seminar) Write(out io.Writer) {
+func (s Seminar) Write(out io.Writer, second bool) {
 	//paris, _ := time.LoadLocation("Europe/Paris")
 	fmt.Fprintln(out, "---")
-	fmt.Fprintf(out, "author: \"%s\"\n", s.Author)
-	fmt.Fprintf(out, "author_url: \"%s\"\n", s.AuthorURL)
 	fmt.Fprintf(out, "date: \"%s\"\n", s.Date)
 	fmt.Fprintf(out, "location: \"%s\"\n", s.Location)
-	fmt.Fprintf(out, "title: \"%s\"\n", s.Title)
-	fmt.Fprintf(out, "author_filiation: \"%s\"\n", s.AuthorFiliation)
-	fmt.Fprintf(out, "author_filiation_url: \"%s\"\n", s.AuthorFiliationURL)
 	fmt.Fprintf(out, "type: \"%s\"\n", s.Type)
-	fmt.Fprintf(out, "author2: \"%s\"\n", s.Author2)
-	fmt.Fprintf(out, "author_url2: \"%s\"\n", s.AuthorURL)
-	fmt.Fprintf(out, "author_filiation2: \"%s\"\n", s.AuthorFiliation2)
-	fmt.Fprintf(out, "author_filiation_url2: \"%s\"\n", s.AuthorFiliationUrl2)
-	fmt.Fprintf(out, "title2: \"%s\"\n", s.Title2)
-	fmt.Fprintln(out, "---")
-	fmt.Fprintln(out, html2md.Convert(cleanupHTML(s.Summary)))
-	if len(s.Summary2) > 0 {
-		fmt.Fprintln(out, "\n<!-- SUMMARY2 -->\n")
+	if !second {
+		fmt.Fprintf(out, "author: \"%s\"\n", s.Author)
+		fmt.Fprintf(out, "author_url: \"%s\"\n", s.AuthorURL)
+		fmt.Fprintf(out, "title: \"%s\"\n", s.Title)
+		fmt.Fprintf(out, "author_filiation: \"%s\"\n", s.AuthorFiliation)
+		fmt.Fprintf(out, "author_filiation_url: \"%s\"\n", s.AuthorFiliationURL)
+		fmt.Fprintln(out, "---")
+		fmt.Fprintln(out, html2md.Convert(cleanupHTML(s.Summary)))
+	}
+	if second && len(s.Summary2) > 0 {
+		fmt.Fprintf(out, "author: \"%s\"\n", s.Author2)
+		fmt.Fprintf(out, "author_url: \"%s\"\n", s.AuthorURL)
+		fmt.Fprintf(out, "author_filiation: \"%s\"\n", s.AuthorFiliation2)
+		fmt.Fprintf(out, "author_filiation_url: \"%s\"\n", s.AuthorFiliationUrl2)
+		fmt.Fprintf(out, "title: \"%s\"\n", s.Title2)
+		fmt.Fprintln(out, "---")
 		fmt.Fprintln(out, html2md.Convert(cleanupHTML(s.Summary2)))
 	}
 }

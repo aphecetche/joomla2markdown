@@ -34,12 +34,18 @@ var content = flag.Bool("content", false, "convert main content (articles)")
 
 func convertSeminars(db *sql.DB) {
 	// Get seminars from DB
+	//seminars, err := wsub.Seminars(db, "date > '2020-1-1'")
 	seminars, err := wsub.Seminars(db, "true")
 	checkErr(err)
 	paris, err := time.LoadLocation("Europe/Paris")
+	var i = 0
 	for _, s := range seminars {
+		i++
 		filename := s.Date.In(paris).Format("2006-01-02-15-04")
 		writeSeminarToFile(s, filename)
+		// if i > 10 {
+		// 	break
+		// }
 	}
 
 }
@@ -121,10 +127,21 @@ func main() {
 func writeSeminarToFile(s *wsub.Seminar, filename string) {
 	path := "seminars/" + s.Date.Format("2006")
 	os.MkdirAll(path, os.ModePerm)
-	file, err := os.Create(path + "/" + filename + ".md")
-	defer file.Close()
-	checkErr(err)
-	s.Write(file)
+	if !s.IsTwo() {
+		file, err := os.Create(path + "/" + filename + ".mdx")
+		defer file.Close()
+		checkErr(err)
+		s.Write(file, false)
+	} else {
+		file1, err1 := os.Create(path + "/" + filename + "-1.mdx")
+		defer file1.Close()
+		checkErr(err1)
+		file2, err2 := os.Create(path + "/" + filename + "-2.mdx")
+		defer file2.Close()
+		checkErr(err2)
+		s.Write(file1, false)
+		s.Write(file2, true)
+	}
 }
 
 func writeToFile(c *wsub.Content, filename string, articles map[int]wsub.Content) {
