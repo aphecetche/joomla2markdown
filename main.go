@@ -127,16 +127,17 @@ func main() {
 func writeSeminarToFile(s *wsub.Seminar, filename string) {
 	path := "seminars/" + s.Date.Format("2006")
 	os.MkdirAll(path, os.ModePerm)
+	ext := ".fr.mdx"
 	if !s.IsTwo() {
-		file, err := os.Create(path + "/" + filename + ".mdx")
+		file, err := os.Create(path + "/" + filename + ext)
 		defer file.Close()
 		checkErr(err)
 		s.Write(file, false)
 	} else {
-		file1, err1 := os.Create(path + "/" + filename + "-1.mdx")
+		file1, err1 := os.Create(path + "/" + filename + "-1" + ext)
 		defer file1.Close()
 		checkErr(err1)
-		file2, err2 := os.Create(path + "/" + filename + "-2.mdx")
+		file2, err2 := os.Create(path + "/" + filename + "-2" + ext)
 		defer file2.Close()
 		checkErr(err2)
 		s.Write(file1, false)
