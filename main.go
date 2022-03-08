@@ -29,8 +29,21 @@ func filter(c []*wsub.Content) []wsub.Content {
 	return keep
 }
 
+var jobs = flag.Bool("jobs", false, "convert jobs")
 var seminars = flag.Bool("seminars", false, "convert seminars")
 var content = flag.Bool("content", false, "convert main content (articles)")
+
+func convertJobs(db *sql.DB) {
+	// Get jobs from DB
+	jobs, err := wsub.Jobs(db, "true")
+	checkErr(err)
+	paris, err := time.LoadLocation("Europe/Paris")
+	for _, job := range jobs {
+		filename := job.DateStart.In(paris).Format("2006-01-02-15-04")
+		writeJobToFile(job, filename)
+	}
+
+}
 
 func convertSeminars(db *sql.DB) {
 	// Get seminars from DB
@@ -121,6 +134,32 @@ func main() {
 	}
 	if *seminars {
 		convertSeminars(db)
+	}
+	if *jobs {
+		convertJobs(db)
+	}
+}
+
+func writeJobToFile(job *wsub.Job, filename string) {
+	path := "jobs/" + job.DateStart.Format("2006")
+	os.MkdirAll(path, os.ModePerm)
+	for _, french := range []bool{true,false} {
+	  var ext string
+	  if (french) {
+		  ext = "fr"
+		  if (len(job.TitleFrFr)==0) {
+			break
+		 }
+	  } else {
+		  ext = "en"
+		  if (len(job.TitleEnGb)==0) {
+			break
+		 }
+	  }
+	  file, err := os.Create(path + "/" + filename + "." + ext + ".mdx")
+	  defer file.Close()
+	  checkErr(err)
+	  job.Write(file, french)
 	}
 }
 
