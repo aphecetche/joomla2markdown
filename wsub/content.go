@@ -303,10 +303,9 @@ func (w Content) Write(out io.Writer, articles map[int]Content) {
 	fmt.Fprintf(out, "title: \"%s\"\n", title)
 	fmt.Fprintf(out, "date: \"%s\"\n", w.Created)
 	fmt.Fprintf(out, "lastmod: \"%s\"\n", w.Modified)
-	fmt.Fprintf(out, "path: \"%s\"\n", w.FullPath())
-	fmt.Fprintf(out, "joomlaid: %d\n", w.ID)
+	fmt.Fprintf(out, "publish_start: \"%s\"\n", w.PublishUp)
+	fmt.Fprintf(out, "publish_end: \"%s\"\n", w.PublishDown)
 	fmt.Fprintf(out, "category: \"%s\"\n", w.Category.Title)
-	fmt.Fprintf(out, "asides: [\"%s.+menu+\"]\n", w.Category.Title)
 
 	base, _ := filepath.Split(w.DirName())
 	layout := filepath.Clean(base)
