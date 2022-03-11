@@ -30,8 +30,21 @@ func filter(c []*wsub.Content) []wsub.Content {
 }
 
 var jobs = flag.Bool("jobs", false, "convert jobs")
+var events = flag.Bool("events", false, "convert events")
 var seminars = flag.Bool("seminars", false, "convert seminars")
 var content = flag.Bool("content", false, "convert main content (articles)")
+
+func convertEvents(db *sql.DB) {
+	// Get events from DB
+	events, err := wsub.Events(db, "true")
+	checkErr(err)
+	paris, err := time.LoadLocation("Europe/Paris")
+	for _, e := range events {
+		filename := e.DateStart.In(paris).Format("2006-01-02-15-04")
+		writeEventToFile(e, filename)
+	}
+
+}
 
 func convertJobs(db *sql.DB) {
 	// Get jobs from DB
@@ -138,6 +151,9 @@ func main() {
 	if *jobs {
 		convertJobs(db)
 	}
+	if *events {
+		convertEvents(db)
+	}
 }
 
 func writeJobToFile(job *wsub.Job, filename string) {
@@ -162,6 +178,18 @@ func writeJobToFile(job *wsub.Job, filename string) {
 	  job.Write(file, french)
 	}
 }
+
+func writeEventToFile(e *wsub.Event, filename string) {
+	path := "events/" + e.DateStart.Format("2006")
+	os.MkdirAll(path, os.ModePerm)
+	ext := ".fr.mdx" // assume it's french, will adjust by hand
+	file, err := os.Create(path + "/" + filename + ext)
+	defer file.Close()
+	checkErr(err)
+	e.Write(file)
+}
+
+
 
 func writeSeminarToFile(s *wsub.Seminar, filename string) {
 	path := "seminars/" + s.Date.Format("2006")
